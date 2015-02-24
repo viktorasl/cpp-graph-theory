@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		6E3A44791A9D03EF00769DBA /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6E3A44781A9D03EF00769DBA /* main.cpp */; };
+		6E3A44811A9D092F00769DBA /* Graph.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6E3A447F1A9D092F00769DBA /* Graph.cpp */; };
+		6E3A44841A9D098400769DBA /* Vertex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6E3A44821A9D098400769DBA /* Vertex.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +27,10 @@
 /* Begin PBXFileReference section */
 		6E3A44751A9D03EF00769DBA /* Graphs */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Graphs; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E3A44781A9D03EF00769DBA /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		6E3A447F1A9D092F00769DBA /* Graph.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Graph.cpp; sourceTree = "<group>"; };
+		6E3A44801A9D092F00769DBA /* Graph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Graph.h; sourceTree = "<group>"; };
+		6E3A44821A9D098400769DBA /* Vertex.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Vertex.cpp; sourceTree = "<group>"; };
+		6E3A44831A9D098400769DBA /* Vertex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vertex.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +64,10 @@
 			isa = PBXGroup;
 			children = (
 				6E3A44781A9D03EF00769DBA /* main.cpp */,
+				6E3A447F1A9D092F00769DBA /* Graph.cpp */,
+				6E3A44801A9D092F00769DBA /* Graph.h */,
+				6E3A44821A9D098400769DBA /* Vertex.cpp */,
+				6E3A44831A9D098400769DBA /* Vertex.h */,
 			);
 			path = Graphs;
 			sourceTree = "<group>";
@@ -118,6 +128,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6E3A44841A9D098400769DBA /* Vertex.cpp in Sources */,
+				6E3A44811A9D092F00769DBA /* Graph.cpp in Sources */,
 				6E3A44791A9D03EF00769DBA /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

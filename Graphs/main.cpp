@@ -7,9 +7,16 @@
 //
 
 #include <iostream>
+#include "Graph.h"
 
-int main(int argc, const char * argv[]) {
-    // insert code here...
-    std::cout << "Hello, World!\n";
+using namespace std;
+
+int main(int argc, const char * argv[])
+{
+    int n = 10;
+    int m = 7;
+    
+    Graph *graph = new Graph(n, m);
+    
     return 0;
 }
