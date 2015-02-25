@@ -13,10 +13,18 @@ using namespace std;
 
 int main(int argc, const char * argv[])
 {
-    long n = 10;
-    long m = 7;
+    long n = 10000;
+    long m = 10000;
     
     Graph *graph = new Graph(n, m);
+    
+    long from;
+    long to;
+    cout << "Source index: ";
+    cin >> from;
+    cout << "Destination index: ";
+    cin >> to;
+    cout << graph->stepsCount(from, to);
     
     return 0;
 }

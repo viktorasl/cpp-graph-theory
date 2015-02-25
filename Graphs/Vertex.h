@@ -27,6 +27,8 @@ public:
     void connectToVertex(Vertex *vertex);
     long getKey();
     VertexType getType();
+    long possibleWays();
+    Vertex *connectionAt(long index);
 };
 
 #endif /* defined(__Graphs__Vertex__) */

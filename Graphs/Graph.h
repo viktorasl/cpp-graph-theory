@@ -22,9 +22,17 @@ private:
 public:
     Graph(long n, long m);
     ~Graph();
-    
+private:
     std::vector<long> possibleDestinationIndexes();
     void connectSourceAndDestinationVertexes();
+public:
+    /**
+     * Steps count from source vertex to destination vertex
+     * 
+     * @param sourceIndex source vertex index
+     * @param destIndex destination vertex index
+     */
+    long stepsCount(long sourceIndex, long destIndex);
 };
 
 #endif /* defined(__Graphs__Graph__) */

@@ -28,3 +28,13 @@ VertexType Vertex::getType()
 {
     return type;
 }
+
+long Vertex::possibleWays()
+{
+    return connections.size();
+}
+
+Vertex* Vertex::connectionAt(long index)
+{
+    return connections.at(index);
+}
