@@ -22,6 +22,8 @@ Graph::Graph(long n, long m)
     cout << "Generating source & destination vertexes..." << endl;
     for (long i = 0; i < n; i++) {
         sourceVertexes.push_back(new Vertex(VertexTypeSource, i));
+    }
+    for (long i = 0; i < m; i++) {
         destinationVertexes.push_back(new Vertex(VertexTypeDestination, i));
     }
     
