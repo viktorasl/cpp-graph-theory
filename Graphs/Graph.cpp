@@ -20,30 +20,29 @@ Graph::Graph(long n, long m)
     cout << n << " source vertexes, " << m << " destination vertexes." << endl;
 #endif
     cout << "Generating source & destination vertexes..." << endl;
-    sourceVertexes = new vector<Vertex *>();
     for (long i = 0; i < n; i++) {
-        sourceVertexes->push_back(new Vertex(VertexTypeSource, i));
+        sourceVertexes.push_back(new Vertex(VertexTypeSource, i));
+        destinationVertexes.push_back(new Vertex(VertexTypeDestination, i));
     }
     
-    destinationVertexes = new vector<Vertex *>();
-    for (long i = 0; i < m; i++) {
-        destinationVertexes->push_back(new Vertex(VertexTypeDestination, i));
-    }
-    
-    maxToDest = destinationVertexes->size();
+    maxToDest = destinationVertexes.size();
     connectSourceAndDestinationVertexes();
 }
 
 Graph::~Graph()
 {
-    //TODO: free containers
-    //TODO: free vertexes
+    for (std::vector<Vertex *>::iterator it = sourceVertexes.begin(); it != sourceVertexes.end(); ++it) {
+        delete *it;
+    }
+    for (std::vector<Vertex *>::iterator it = destinationVertexes.begin(); it != destinationVertexes.end(); ++it) {
+        delete *it;
+    }
 }
 
 vector<long> Graph::possibleDestinationIndexes()
 {
     vector<long> possibleIndexes;
-    for (long i = 0; i < destinationVertexes->size(); i++) {
+    for (long i = 0; i < destinationVertexes.size(); i++) {
         possibleIndexes.push_back(i);
     }
     return possibleIndexes;
@@ -52,13 +51,13 @@ vector<long> Graph::possibleDestinationIndexes()
 void Graph::connectSourceAndDestinationVertexes()
 {
     cout << "Connecting source and destination vertexes..." << endl;
-    for(std::vector<Vertex *>::iterator it = sourceVertexes->begin(); it != sourceVertexes->end(); ++it) {
-        cout << "Connecting vertex " << distance(sourceVertexes->begin(), it) << endl;
+    for(std::vector<Vertex *>::iterator it = sourceVertexes.begin(); it != sourceVertexes.end(); ++it) {
+        cout << "Connecting vertex " << distance(sourceVertexes.begin(), it) << endl;
         Vertex *sourceVertex = *it;
         
         long edgesCount = arc4random() % maxToDest;
 #ifdef DEBUG
-        cout << distance(sourceVertexes->begin(), it) << ":";
+        cout << distance(sourceVertexes.begin(), it) << ":";
 #endif
         vector<long> possibleIndexes = possibleDestinationIndexes();
 #ifdef DEBUG
@@ -72,7 +71,7 @@ void Graph::connectSourceAndDestinationVertexes()
             cout << ((i > 0)? "," : "") << index;
 #endif
             
-            Vertex *destinationVertex = destinationVertexes->at(index);
+            Vertex *destinationVertex = destinationVertexes.at(index);
             sourceVertex->connectToVertex(destinationVertex);
             destinationVertex->connectToVertex(sourceVertex);
         }
@@ -84,10 +83,10 @@ void Graph::connectSourceAndDestinationVertexes()
 
 long Graph::stepsCount(long sourceIndex, long destIndex)
 {
-    Vertex *end = destinationVertexes->at(destIndex);
+    Vertex *end = destinationVertexes.at(destIndex);
     long steps = 0;
     
-    Vertex *current = sourceVertexes->at(sourceIndex);
+    Vertex *current = sourceVertexes.at(sourceIndex);
     while (current != end) {
         steps++;
         if (current->possibleWays() < 1) {

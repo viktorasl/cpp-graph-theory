@@ -17,8 +17,8 @@ class Vertex;
 class Graph
 {
 private:
-    std::vector<Vertex *>* sourceVertexes;
-    std::vector<Vertex *>* destinationVertexes;
+    std::vector<Vertex *> sourceVertexes;
+    std::vector<Vertex *> destinationVertexes;
     
     /**
      *  Maximum edges from one source vertex to destination vertexes

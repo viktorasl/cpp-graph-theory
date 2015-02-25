@@ -16,7 +16,7 @@ int main(int argc, const char * argv[])
     long n = 10000;
     long m = 10000;
     
-    Graph *graph = new Graph(n, m);
+    Graph graph(n, m);
     
     long from;
     long to;
@@ -24,7 +24,7 @@ int main(int argc, const char * argv[])
     cin >> from;
     cout << "Destination index: ";
     cin >> to;
-    cout << graph->stepsCount(from, to);
+    cout << graph.stepsCount(from, to);
     
     return 0;
 }
