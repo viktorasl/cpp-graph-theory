@@ -20,8 +20,11 @@ private:
     std::vector<Vertex *>* sourceVertexes;
     std::vector<Vertex *>* destinationVertexes;
 public:
-    Graph(int n, int m);
+    Graph(long n, long m);
     ~Graph();
+    
+    std::vector<long> possibleDestinationIndexes();
+    void connectSourceAndDestinationVertexes();
 };
 
 #endif /* defined(__Graphs__Graph__) */

@@ -13,8 +13,8 @@ using namespace std;
 
 int main(int argc, const char * argv[])
 {
-    int n = 10;
-    int m = 7;
+    long n = 10;
+    long m = 7;
     
     Graph *graph = new Graph(n, m);
     
