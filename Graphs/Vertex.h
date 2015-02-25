@@ -12,11 +12,21 @@
 #include <stdio.h>
 #include <vector>
 
+enum VertexType {
+    VertexTypeSource,
+    VertexTypeDestination
+};
+
 class Vertex {
 private:
+    long key;
+    VertexType type;
     std::vector<Vertex *> connections;
 public:
+    Vertex(VertexType type, long key);
     void connectToVertex(Vertex *vertex);
+    long getKey();
+    VertexType getType();
 };
 
 #endif /* defined(__Graphs__Vertex__) */

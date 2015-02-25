@@ -8,7 +8,23 @@
 
 #include "Vertex.h"
 
+Vertex::Vertex(VertexType type, long key)
+{
+    this->type = type;
+    this->key = key;
+}
+
 void Vertex::connectToVertex(Vertex *vertex)
 {
     connections.push_back(vertex);
+}
+
+long Vertex::getKey()
+{
+    return key;
+}
+
+VertexType Vertex::getType()
+{
+    return type;
 }

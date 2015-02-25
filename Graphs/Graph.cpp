@@ -19,13 +19,12 @@ Graph::Graph(long n, long m)
     cout << n << " source vertexed, " << m << " destination vertexes." << endl;
     sourceVertexes = new vector<Vertex *>();
     for (long i = 0; i < n; i++) {
-        sourceVertexes->push_back(new Vertex());
-        
+        sourceVertexes->push_back(new Vertex(VertexTypeSource, i));
     }
     
     destinationVertexes = new vector<Vertex *>();
     for (long i = 0; i < m; i++) {
-        destinationVertexes->push_back(new Vertex());
+        destinationVertexes->push_back(new Vertex(VertexTypeDestination, i));
     }
     
     connectSourceAndDestinationVertexes();
