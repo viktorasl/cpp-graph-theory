@@ -30,6 +30,7 @@ Graph::Graph(long n, long m)
         destinationVertexes->push_back(new Vertex(VertexTypeDestination, i));
     }
     
+    maxToDest = destinationVertexes->size();
     connectSourceAndDestinationVertexes();
 }
 
@@ -55,7 +56,7 @@ void Graph::connectSourceAndDestinationVertexes()
         cout << "Connecting vertex " << distance(sourceVertexes->begin(), it) << endl;
         Vertex *sourceVertex = *it;
         
-        long edgesCount = arc4random() % destinationVertexes->size();
+        long edgesCount = arc4random() % maxToDest;
 #ifdef DEBUG
         cout << distance(sourceVertexes->begin(), it) << ":";
 #endif

@@ -19,6 +19,11 @@ class Graph
 private:
     std::vector<Vertex *>* sourceVertexes;
     std::vector<Vertex *>* destinationVertexes;
+    
+    /**
+     *  Maximum edges from one source vertex to destination vertexes
+     */
+    long maxToDest = 0;
 public:
     Graph(long n, long m);
     ~Graph();
