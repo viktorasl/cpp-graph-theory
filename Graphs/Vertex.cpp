@@ -7,3 +7,8 @@
 //
 
 #include "Vertex.h"
+
+void Vertex::connectToVertex(Vertex *vertex)
+{
+    connections.push_back(vertex);
+}

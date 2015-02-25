@@ -49,16 +49,20 @@ vector<long> Graph::possibleDestinationIndexes()
 void Graph::connectSourceAndDestinationVertexes()
 {
     for(std::vector<Vertex *>::iterator it = sourceVertexes->begin(); it != sourceVertexes->end(); ++it) {
-        Vertex *vertex = *it;
+        Vertex *sourceVertex = *it;
         long edgesCount = arc4random() % destinationVertexes->size();
         cout << edgesCount << " edge(s) for vertex[" << distance(sourceVertexes->begin(), it) << "]" << endl;
         vector<long> possibleIndexes = possibleDestinationIndexes();
         cout << "[";
         for (long i = 0; i < edgesCount; i++) {
-            long index = arc4random() % possibleIndexes.size();
-            long value = possibleIndexes.at(index);
-            possibleIndexes.erase(possibleIndexes.begin() + index);
-            cout << ((i > 0)? "," : "") << value;
+            long accessor = arc4random() % possibleIndexes.size();
+            long index = possibleIndexes.at(accessor);
+            possibleIndexes.erase(possibleIndexes.begin() + accessor);
+            cout << ((i > 0)? "," : "") << index;
+            
+            Vertex *destinationVertex = destinationVertexes->at(index);
+            sourceVertex->connectToVertex(destinationVertex);
+            destinationVertex->connectToVertex(sourceVertex);
         }
         cout << "]" << endl;
     }

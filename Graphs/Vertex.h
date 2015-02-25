@@ -10,9 +10,13 @@
 #define __Graphs__Vertex__
 
 #include <stdio.h>
+#include <vector>
 
 class Vertex {
-    
+private:
+    std::vector<Vertex *> connections;
+public:
+    void connectToVertex(Vertex *vertex);
 };
 
 #endif /* defined(__Graphs__Vertex__) */
