@@ -13,18 +13,40 @@ using namespace std;
 
 int main(int argc, const char * argv[])
 {
-    long n = 10000;
-    long m = 10000;
+    long n = 3000;
+    long m = 3000;
+    long iterations = 10000;
     
     Graph graph(n, m);
     
     long from;
     long to;
-    cout << "Source index: ";
-    cin >> from;
-    cout << "Destination index: ";
-    cin >> to;
-    cout << graph.stepsCount(from, to);
+    
+    while (from != -1) {
+        cout << "Source index: ";
+        cin >> from;
+        cout << "Destination index: ";
+        cin >> to;
+        if (from > 0 && to > 0) {
+            
+            long sum = 0;
+            long max = 0;
+            long min = INT32_MAX;
+            for (int i = 0; i < iterations; i++) {
+                long stepsCount = graph.stepsCount(from, to);
+                if (stepsCount < min) {
+                    min = stepsCount;
+                }
+                if (stepsCount > max) {
+                    max = stepsCount;
+                }
+                sum += stepsCount;
+            }
+            
+            cout << "Average: " << (sum / iterations) << "; Min: " << min << "; Max: " << max << endl;
+            
+        }
+    }
     
     return 0;
 }
