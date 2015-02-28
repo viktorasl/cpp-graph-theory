@@ -8,6 +8,8 @@
 
 #include "Vertex.h"
 
+using namespace std;
+
 Vertex::Vertex(VertexType type, long key)
 {
     this->type = type;
@@ -17,6 +19,28 @@ Vertex::Vertex(VertexType type, long key)
 void Vertex::connectToVertex(Vertex *vertex)
 {
     connections.push_back(vertex);
+}
+
+bool Vertex::connectToVertexIfNotExist(Vertex *vertex)
+{
+    if (*find(connections.begin(), connections.end(), vertex)) {
+        return false;
+    } else {
+        connections.push_back(vertex);
+        return true;
+    }
+}
+
+void Vertex::connectConnectionsToEachOther()
+{
+    for (vector<Vertex *>::iterator it = connections.begin(); it != connections.end(); ++it) {
+        for (vector<Vertex *>::iterator vertex = next(it); vertex != connections.end(); ++vertex) {
+            bool connected = (*it)->connectToVertexIfNotExist(*vertex);
+            if (connected) {
+                (*vertex)->connectToVertex(*it);
+            }
+        }
+    }
 }
 
 long Vertex::getKey()

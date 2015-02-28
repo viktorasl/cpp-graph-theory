@@ -24,7 +24,11 @@ private:
     std::vector<Vertex *> connections;
 public:
     Vertex(VertexType type, long key);
+private:
+    bool connectToVertexIfNotExist(Vertex *vertex);
+public:
     void connectToVertex(Vertex *vertex);
+    void connectConnectionsToEachOther();
     long getKey();
     VertexType getType();
     long possibleWays();

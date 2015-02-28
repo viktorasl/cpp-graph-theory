@@ -30,6 +30,7 @@ Graph::Graph(long n, long m)
     
     maxToDest = destinationVertexes.size();
     connectSourceAndDestinationVertexes();
+    connectSourcesToEachOther();
 }
 
 Graph::~Graph()
@@ -72,6 +73,13 @@ void Graph::connectSourceAndDestinationVertexes()
 #ifdef DEBUG
         cout << "]" << endl;
 #endif
+    }
+}
+
+void Graph::connectSourcesToEachOther()
+{
+    for (vector<Vertex *>::iterator it = destinationVertexes.begin(); it != destinationVertexes.end(); ++it) {
+        (*it)->connectConnectionsToEachOther();
     }
 }
 

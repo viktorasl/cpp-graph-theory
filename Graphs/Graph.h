@@ -29,6 +29,7 @@ public:
     ~Graph();
 private:
     void connectSourceAndDestinationVertexes();
+    void connectSourcesToEachOther();
 public:
     /**
      * Steps count from source vertex to destination vertex
