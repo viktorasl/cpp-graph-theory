@@ -7,10 +7,11 @@
 //
 
 #include "Graph.h"
-#include "Vertex.h"
 #include <vector>
 #include <iostream>
 #include <random>
+#include "Random.h"
+#include "Vertex.h"
 
 using namespace std;
 
@@ -41,18 +42,10 @@ Graph::~Graph()
     }
 }
 
-vector<long> Graph::possibleDestinationIndexes()
-{
-    vector<long> possibleIndexes;
-    for (long i = 0; i < destinationVertexes.size(); i++) {
-        possibleIndexes.push_back(i);
-    }
-    return possibleIndexes;
-}
-
 void Graph::connectSourceAndDestinationVertexes()
 {
     cout << "Connecting source and destination vertexes..." << endl;
+    
     for(std::vector<Vertex *>::iterator it = sourceVertexes.begin(); it != sourceVertexes.end(); ++it) {
         cout << "Connecting vertex " << distance(sourceVertexes.begin(), it) << endl;
         Vertex *sourceVertex = *it;
@@ -61,14 +54,13 @@ void Graph::connectSourceAndDestinationVertexes()
 #ifdef DEBUG
         cout << distance(sourceVertexes.begin(), it) << ":";
 #endif
-        vector<long> possibleIndexes = possibleDestinationIndexes();
 #ifdef DEBUG
         cout << "[";
 #endif
+        Random rand(0, destinationVertexes.size());
+        
         for (long i = 0; i < edgesCount; i++) {
-            long accessor = arc4random() % possibleIndexes.size();
-            long index = possibleIndexes.at(accessor);
-            possibleIndexes.erase(possibleIndexes.begin() + accessor);
+            long index = rand.nextUnique();
 #ifdef DEBUG
             cout << ((i > 0)? "," : "") << index;
 #endif

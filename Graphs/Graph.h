@@ -28,7 +28,6 @@ public:
     Graph(long n, long m);
     ~Graph();
 private:
-    std::vector<long> possibleDestinationIndexes();
     void connectSourceAndDestinationVertexes();
 public:
     /**

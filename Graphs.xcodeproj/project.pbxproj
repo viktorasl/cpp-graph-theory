@@ -10,6 +10,7 @@
 		6E3A44791A9D03EF00769DBA /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6E3A44781A9D03EF00769DBA /* main.cpp */; };
 		6E3A44811A9D092F00769DBA /* Graph.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6E3A447F1A9D092F00769DBA /* Graph.cpp */; };
 		6E3A44841A9D098400769DBA /* Vertex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6E3A44821A9D098400769DBA /* Vertex.cpp */; };
+		6E7C706A1AA20627003AD14F /* Random.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6E7C70681AA20627003AD14F /* Random.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -31,6 +32,8 @@
 		6E3A44801A9D092F00769DBA /* Graph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Graph.h; sourceTree = "<group>"; };
 		6E3A44821A9D098400769DBA /* Vertex.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Vertex.cpp; sourceTree = "<group>"; };
 		6E3A44831A9D098400769DBA /* Vertex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vertex.h; sourceTree = "<group>"; };
+		6E7C70681AA20627003AD14F /* Random.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Random.cpp; sourceTree = "<group>"; };
+		6E7C70691AA20627003AD14F /* Random.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Random.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +71,8 @@
 				6E3A44801A9D092F00769DBA /* Graph.h */,
 				6E3A44821A9D098400769DBA /* Vertex.cpp */,
 				6E3A44831A9D098400769DBA /* Vertex.h */,
+				6E7C70681AA20627003AD14F /* Random.cpp */,
+				6E7C70691AA20627003AD14F /* Random.h */,
 			);
 			path = Graphs;
 			sourceTree = "<group>";
@@ -128,6 +133,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6E7C706A1AA20627003AD14F /* Random.cpp in Sources */,
 				6E3A44841A9D098400769DBA /* Vertex.cpp in Sources */,
 				6E3A44811A9D092F00769DBA /* Graph.cpp in Sources */,
 				6E3A44791A9D03EF00769DBA /* main.cpp in Sources */,
