@@ -78,8 +78,15 @@ void Graph::connectSourceAndDestinationVertexes()
 
 void Graph::connectSourcesToEachOther()
 {
+    const long count = sourceVertexes.size();
+    bool** taken = new bool*[count]{NULL};
+    for (long i = 0; i < count; i++) {
+        taken[i] = new bool[count]{false};
+    }
+    
     for (vector<Vertex *>::iterator it = destinationVertexes.begin(); it != destinationVertexes.end(); ++it) {
-        (*it)->connectConnectionsToEachOther();
+        cout << "Destination vertex " << distance(destinationVertexes.begin(), it) << endl;
+        (*it)->connectConnectionsToEachOther(taken);
     }
 }
 

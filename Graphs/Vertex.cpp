@@ -31,13 +31,18 @@ bool Vertex::connectToVertexIfNotExist(Vertex *vertex)
     }
 }
 
-void Vertex::connectConnectionsToEachOther()
+void Vertex::connectConnectionsToEachOther(bool** taken)
 {
     for (vector<Vertex *>::iterator it = connections.begin(); it != connections.end(); ++it) {
         for (vector<Vertex *>::iterator vertex = next(it); vertex != connections.end(); ++vertex) {
-            bool connected = (*it)->connectToVertexIfNotExist(*vertex);
-            if (connected) {
-                (*vertex)->connectToVertex(*it);
+            if (*it != *vertex) {
+                bool alreadyInRecord = taken[(*it)->getKey()][(*vertex)->getKey()];
+                if (! alreadyInRecord) {
+                    (*it)->connectToVertex(*vertex);
+                    (*vertex)->connectToVertex(*it);
+                    taken[(*it)->getKey()][(*vertex)->getKey()] = true;
+                    taken[(*vertex)->getKey()][(*it)->getKey()] = true;
+                }
             }
         }
     }

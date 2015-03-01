@@ -28,7 +28,7 @@ private:
     bool connectToVertexIfNotExist(Vertex *vertex);
 public:
     void connectToVertex(Vertex *vertex);
-    void connectConnectionsToEachOther();
+    void connectConnectionsToEachOther(bool** taken);
     long getKey();
     VertexType getType();
     long possibleWays();
