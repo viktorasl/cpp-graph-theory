@@ -20,8 +20,13 @@ GeneratingFunction::GeneratingFunction(float beta, long m, long n, int precision
     this->multiplication = sqrt((float)(m / n));
 }
 
+long GeneratingFunction::generateWithT(double t)
+{
+    return floor(pow(1 - t, -1/beta) * multiplication);
+}
+
 long GeneratingFunction::generate()
 {
     double t = arc4random() % (division - 1) / (double)division;
-    return pow(1 - t, -1/beta) * multiplication;
+    return generateWithT(t);
 }

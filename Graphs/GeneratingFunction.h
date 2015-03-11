@@ -11,6 +11,10 @@
 
 #include <stdio.h>
 
+#ifdef __UNIT_TEST__
+class TestGeneratingFunction;
+#endif
+
 class GeneratingFunction
 {
 private:
@@ -19,7 +23,14 @@ private:
     double multiplication;
 public:
     GeneratingFunction(float beta, long m, long n, int precision);
+private:
+    long generateWithT(double t);
+public:
     long generate();
+    
+#ifdef __UNIT_TEST__
+    friend class TestGeneratingFunction;
+#endif
 };
 
 #endif /* defined(__Graphs__GeneratingFunction__) */
