@@ -8,16 +8,19 @@
 
 #include <iostream>
 #include "Graph.h"
+#include <cmath>
+#include "GeneratingFunction.h"
 
 using namespace std;
 
 int main(int argc, const char * argv[])
 {
-    long n = 3000;
-    long m = 3000;
-    long iterations = 10000;
+    long n = 100;
+    long m = 100;
+    long iterations = 100;
+    GeneratingFunction *gf = new GeneratingFunction(2, m, n, 4);
     
-    Graph graph(n, m);
+    Graph graph(n, m, gf);
     
     long from;
     long to;
@@ -27,7 +30,7 @@ int main(int argc, const char * argv[])
         cin >> from;
         cout << "Destination index: ";
         cin >> to;
-        if (from > 0 && to > 0) {
+        if (from >= 0 && to >= 0) {
             
             long sum = 0;
             long max = 0;

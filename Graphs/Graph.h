@@ -13,19 +13,16 @@
 #include <vector>
 
 class Vertex;
+class GeneratingFunction;
 
 class Graph
 {
 private:
+    GeneratingFunction *function;
     std::vector<Vertex *> sourceVertexes;
     std::vector<Vertex *> destinationVertexes;
-    
-    /**
-     *  Maximum edges from one source vertex to destination vertexes
-     */
-    long maxToDest = 0;
 public:
-    Graph(long n, long m);
+    Graph(long n, long m, GeneratingFunction *function);
     ~Graph();
 private:
     void connectSourceAndDestinationVertexes();

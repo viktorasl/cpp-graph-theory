@@ -12,10 +12,11 @@
 #include <random>
 #include "Random.h"
 #include "Vertex.h"
+#include "GeneratingFunction.h"
 
 using namespace std;
 
-Graph::Graph(long n, long m)
+Graph::Graph(long n, long m, GeneratingFunction *function)
 {
 #ifdef DEBUG
     cout << n << " source vertexes, " << m << " destination vertexes." << endl;
@@ -28,7 +29,7 @@ Graph::Graph(long n, long m)
         destinationVertexes.push_back(new Vertex(VertexTypeDestination, i));
     }
     
-    maxToDest = destinationVertexes.size();
+    this->function = function;
     connectSourceAndDestinationVertexes();
     connectSourcesToEachOther();
 }
@@ -46,12 +47,17 @@ Graph::~Graph()
 void Graph::connectSourceAndDestinationVertexes()
 {
     cout << "Connecting source and destination vertexes..." << endl;
+    int moreThanDestinations = 0;
     
     for(std::vector<Vertex *>::iterator it = sourceVertexes.begin(); it != sourceVertexes.end(); ++it) {
         cout << "Connecting vertex " << distance(sourceVertexes.begin(), it) << endl;
         Vertex *sourceVertex = *it;
         
-        long edgesCount = arc4random() % maxToDest;
+        long edgesCount = 0;
+        while ((edgesCount = function->generate()) > destinationVertexes.size()) {
+            moreThanDestinations++;
+        }
+        
 #ifdef DEBUG
         cout << distance(sourceVertexes.begin(), it) << ":";
 #endif
@@ -74,6 +80,8 @@ void Graph::connectSourceAndDestinationVertexes()
         cout << "]" << endl;
 #endif
     }
+    
+    cout << moreThanDestinations << " times number was generated which was bigger than destinations count" << endl;
 }
 
 void Graph::connectSourcesToEachOther()
