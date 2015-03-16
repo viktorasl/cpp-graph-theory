@@ -22,11 +22,12 @@ GeneratingFunction::GeneratingFunction(float beta, long m, long n, int precision
 
 long GeneratingFunction::generateWithT(double t)
 {
-    return floor(pow(1 - t, -1/beta) * multiplication);
+    return floor(1 / pow(1 - t, 1 / beta)) * multiplication;
 }
 
 long GeneratingFunction::generate()
 {
-    double t = arc4random() % (division - 1) / (double)division;
+    double t = arc4random() % (division - 1) / (double)division; // getting u
+    t = 1 - t * pow(2, -beta);
     return generateWithT(t);
 }

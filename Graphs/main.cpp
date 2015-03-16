@@ -15,10 +15,10 @@ using namespace std;
 
 int main(int argc, const char * argv[])
 {
-    long n = 100;
-    long m = 100;
+    long n = 10000;
+    long m = 20000;
     long iterations = 100;
-    GeneratingFunction *gf = new GeneratingFunction(2, m, n, 4);
+    GeneratingFunction *gf = new GeneratingFunction(2, m, n, 8);
     
     Graph graph(n, m, gf);
     

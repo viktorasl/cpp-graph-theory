@@ -18,10 +18,14 @@ class TestGeneratingFunction
 {
 public:
     TestGeneratingFunction() {
-        GeneratingFunction *gf = new GeneratingFunction(2, 16, 4, 4);
+        GeneratingFunction gf(2, 16, 4, 4);
         
-        cout << "Test1: " << ((gf->generateWithT(0.75) == 4)? "passed" : "failed") << endl;
-        cout << "Test2: " << ((gf->generateWithT(0.4650) == 2)? "passed" : "failed") << endl;
-        cout << "Test3: " << ((gf->generateWithT(0.9950) == 28)? "passed" : "failed") << endl;
+        cout << "Test1: " << ((gf.generateWithT(0.75) == 4)? "passed" : "failed") << endl;
+        cout << "Test2: " << ((gf.generateWithT(0.4650) == 2)? "passed" : "failed") << endl;
+        cout << "Test3: " << ((gf.generateWithT(0.9950) == 28)? "passed" : "failed") << endl;
+        
+        GeneratingFunction gg(2, 100, 100, 4);
+        
+        cout << "Test4: " << ((gg.generateWithT(3./4.) == 2)? "passed" : "failed") << endl;
     }
 };
