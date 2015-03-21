@@ -22,6 +22,12 @@ private:
     long division;
     double multiplication;
 public:
+    /**
+     * @param beta      positive exponential constant
+     * @param m         destinations count
+     * @param n         sources count
+     * @param precision generated random number from 0 to 1 precision
+     */
     GeneratingFunction(float beta, long m, long n, int precision);
 private:
     long generateWithT(double t);
