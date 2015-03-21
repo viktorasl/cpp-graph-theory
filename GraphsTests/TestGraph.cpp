@@ -19,8 +19,8 @@ public:
     {
         Graph graph;
         
-        int sCount = 2;
-        int dCount = 2;
+        int sCount = 4;
+        int dCount = 4;
         Vertex *s[sCount];
         for (int i = 0; i < sCount; i++) {
             s[i] = new Vertex(VertexTypeSource, i);
@@ -34,10 +34,14 @@ public:
         
         connectEachOther(s[0], d[0]);
         connectEachOther(s[0], d[1]);
+        connectEachOther(s[1], d[1]);
+        connectEachOther(s[1], d[2]);
+        connectEachOther(s[2], d[3]);
+        connectEachOther(s[3], d[3]);
         
         cout << __func__ << ":test1: " << ((graph.isConnected() == false)? "passed" : "failed") << endl;
         
-        connectEachOther(s[1], d[0]);
+        connectEachOther(s[2], d[1]);
         
         cout << __func__ << ":test2: " << ((graph.isConnected() == true)? "passed" : "failed") << endl;
     }
