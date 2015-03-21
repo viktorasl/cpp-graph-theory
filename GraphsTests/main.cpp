@@ -8,9 +8,11 @@
 
 #include <iostream>
 #include "TestGeneratingFunction.cpp"
+#include "TestGraph.cpp"
 
 int main(int argc, const char * argv[])
 {
+    TestGraph();
     TestGeneratingFunction();
     return 0;
 }

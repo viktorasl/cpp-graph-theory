@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6E0F38C71ABD763A005E95F5 /* Graph.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6E3A447F1A9D092F00769DBA /* Graph.cpp */; };
+		6E0F38C81ABD766C005E95F5 /* Vertex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6E3A44821A9D098400769DBA /* Vertex.cpp */; };
+		6E0F38C91ABD766F005E95F5 /* Random.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6E7C70681AA20627003AD14F /* Random.cpp */; };
+		6E0F38CC1ABD7AFD005E95F5 /* TestGraph.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6E0F38CA1ABD7AFD005E95F5 /* TestGraph.cpp */; };
 		6E3A44791A9D03EF00769DBA /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6E3A44781A9D03EF00769DBA /* main.cpp */; };
 		6E3A44811A9D092F00769DBA /* Graph.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6E3A447F1A9D092F00769DBA /* Graph.cpp */; };
 		6E3A44841A9D098400769DBA /* Vertex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6E3A44821A9D098400769DBA /* Vertex.cpp */; };
@@ -39,6 +43,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		6E0F38CA1ABD7AFD005E95F5 /* TestGraph.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TestGraph.cpp; sourceTree = "<group>"; };
 		6E3A44751A9D03EF00769DBA /* Graphs */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Graphs; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E3A44781A9D03EF00769DBA /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		6E3A447F1A9D092F00769DBA /* Graph.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Graph.cpp; sourceTree = "<group>"; };
@@ -111,6 +116,7 @@
 			children = (
 				6E9B0E251AB09C9F0048808E /* main.cpp */,
 				6E9B0E2A1AB09CBB0048808E /* TestGeneratingFunction.cpp */,
+				6E0F38CA1ABD7AFD005E95F5 /* TestGraph.cpp */,
 			);
 			path = GraphsTests;
 			sourceTree = "<group>";
@@ -204,9 +210,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6E0F38C91ABD766F005E95F5 /* Random.cpp in Sources */,
+				6E0F38C81ABD766C005E95F5 /* Vertex.cpp in Sources */,
+				6E0F38C71ABD763A005E95F5 /* Graph.cpp in Sources */,
 				6E9B0E2C1AB0A1470048808E /* GeneratingFunction.cpp in Sources */,
 				6E9B0E261AB09C9F0048808E /* main.cpp in Sources */,
 				6E9B0E2B1AB09CBB0048808E /* TestGeneratingFunction.cpp in Sources */,
+				6E0F38CC1ABD7AFD005E95F5 /* TestGraph.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -306,7 +316,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
+					"__UNIT_TEST__=1",
 					"$(inherited)",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -316,6 +326,7 @@
 		6E9B0E281AB09C9F0048808E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				GCC_PREPROCESSOR_DEFINITIONS = "__UNIT_TEST__=1";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -348,6 +359,7 @@
 				6E9B0E281AB09C9F0048808E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

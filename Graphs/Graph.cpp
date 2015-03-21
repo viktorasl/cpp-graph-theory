@@ -34,6 +34,10 @@ Graph::Graph(long n, long m, GeneratingFunction *function)
     connectSourcesToEachOther();
 }
 
+Graph::Graph()
+{
+}
+
 Graph::~Graph()
 {
     for (std::vector<Vertex *>::iterator it = sourceVertexes.begin(); it != sourceVertexes.end(); ++it) {

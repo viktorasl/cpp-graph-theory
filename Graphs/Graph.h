@@ -21,6 +21,7 @@ private:
     GeneratingFunction *function;
     std::vector<Vertex *> sourceVertexes;
     std::vector<Vertex *> destinationVertexes;
+    Graph();
 public:
     Graph(long n, long m, GeneratingFunction *function);
     ~Graph();
@@ -37,6 +38,10 @@ public:
      * @param destIndex destination vertex index
      */
     long stepsCount(long sourceIndex, long destIndex);
+    
+#ifdef __UNIT_TEST__
+    friend class TestGraph;
+#endif
 };
 
 #endif /* defined(__Graphs__Graph__) */
