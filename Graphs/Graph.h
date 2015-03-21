@@ -27,7 +27,9 @@ public:
 private:
     void connectSourceAndDestinationVertexes();
     void connectSourcesToEachOther();
+    void recursivelyCheckConnection(Vertex *current, long &visitedCount);
 public:
+    bool isConnected();
     /**
      * Steps count from source vertex to destination vertex
      * 

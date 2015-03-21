@@ -19,6 +19,7 @@ enum VertexType {
 
 class Vertex {
 private:
+    bool visited;
     long key;
     VertexType type;
     std::vector<Vertex *> connections;
@@ -30,6 +31,8 @@ public:
     void connectToVertex(Vertex *vertex);
     void connectConnectionsToEachOther(bool** taken);
     long getKey();
+    bool isVisited();
+    void setVisited(bool isVisited);
     VertexType getType();
     long possibleWays();
     Vertex *connectionAt(long index);

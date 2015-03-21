@@ -53,6 +53,16 @@ long Vertex::getKey()
     return key;
 }
 
+bool Vertex::isVisited()
+{
+    return visited;
+}
+
+void Vertex::setVisited(bool isVisited)
+{
+    visited = isVisited;
+}
+
 VertexType Vertex::getType()
 {
     return type;
