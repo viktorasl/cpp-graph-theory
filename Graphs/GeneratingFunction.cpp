@@ -14,35 +14,33 @@
 using namespace std;
 
 GeneratingFunction::GeneratingFunction(double beta, long m, long n, int precision)
+    : precisionFactor(pow(10, precision))
 {
     this->beta = beta;
-    this->precisionFactor = pow(10, precision);
     this->multiplication = sqrt((double)(m / n));
 }
 
-double GeneratingFunction::randomizeT()
+double GeneratingFunction::randomizeU()
 {
-    double t = arc4random() % precisionFactor / (double)precisionFactor; // getting u
-    t = 1 - t * pow(2, -beta);
-    return t;
+    return (long)arc4random() % precisionFactor / (double)precisionFactor; // getting u
 }
 
-double GeneratingFunction::functionValueWithT(double t)
+double GeneratingFunction::functionValueWithU(double u)
 {
-    return 1 / pow(1 - t, 1 / beta);
+    return 2 * pow(u, -1 / beta);
 }
 
 double GeneratingFunction::randomizeFunctionValue()
 {
-    return functionValueWithT(randomizeT());
+    return functionValueWithU(randomizeU());
 }
 
-long GeneratingFunction::generateWithT(double t)
+long GeneratingFunction::generateWithU(double u)
 {
-    return floor(functionValueWithT(t) * multiplication);
+    return floor(functionValueWithU(u) * multiplication);
 }
 
 long GeneratingFunction::generate()
 {
-    return generateWithT(randomizeT());
+    return generateWithU(randomizeU());
 }

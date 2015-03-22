@@ -19,7 +19,7 @@ class GeneratingFunction
 {
 private:
     double beta;
-    long precisionFactor;
+    long const precisionFactor;
     double multiplication;
 public:
     /**
@@ -30,10 +30,10 @@ public:
      */
     GeneratingFunction(double beta, long m, long n, int precision);
 private:
-    double randomizeT();
-    double functionValueWithT(double t);
-    long generateWithT(double t);
+    double functionValueWithU(double u);
+    long generateWithU(double u);
 public:
+    double randomizeU();
     double randomizeFunctionValue();
     long generate();
     
