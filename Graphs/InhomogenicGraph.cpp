@@ -11,6 +11,7 @@
 #include "Vertex.h"
 #include "GeneratingFunction.h"
 #include <math.h>
+#include <fstream>
 
 #define MIN(a,b) ((a) < (b) ? a : b)
 
@@ -55,4 +56,13 @@ void InhomogenicGraph::connectSourceAndDestinationVertexes()
         }
     }
     cout << a << endl;
+}
+
+void InhomogenicGraph::destinationsPickingHistogram(string oFileName)
+{
+    ofstream file(oFileName);
+    for (std::vector<Vertex *>::iterator dst = destinationVertexes.begin(); dst != destinationVertexes.end(); ++dst) {
+        file << "w" << (*dst)->getKey() << "\t" << (*dst)->getFactor() << "\t" << (*dst)->possibleWays() << endl;
+    }
+    file.close();
 }

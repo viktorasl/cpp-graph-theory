@@ -101,6 +101,7 @@
 		6E3A44771A9D03EF00769DBA /* Graphs */ = {
 			isa = PBXGroup;
 			children = (
+				6E7022161ABF32DD00681164 /* Histograms */,
 				6E3A44781A9D03EF00769DBA /* main.cpp */,
 				6E3A447F1A9D092F00769DBA /* Graph.cpp */,
 				6E3A44801A9D092F00769DBA /* Graph.h */,
@@ -114,6 +115,13 @@
 				6E979B3B1ABDD07800CF5BF5 /* InhomogenicGraph.h */,
 			);
 			path = Graphs;
+			sourceTree = "<group>";
+		};
+		6E7022161ABF32DD00681164 /* Histograms */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Histograms;
 			sourceTree = "<group>";
 		};
 		6E9B0E241AB09C9F0048808E /* GraphsTests */ = {

@@ -23,6 +23,8 @@ public:
     InhomogenicGraph(long n, long m, GeneratingFunction* gfn, GeneratingFunction *gfm);
 protected:
     void connectSourceAndDestinationVertexes();
+public:
+    void destinationsPickingHistogram(std::string oFileName);
 };
 
 #endif /* defined(__Graphs__InhomogenicGraph__) */

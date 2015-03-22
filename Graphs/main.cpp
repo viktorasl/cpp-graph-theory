@@ -22,7 +22,11 @@ int main(int argc, const char * argv[])
     
     InhomogenicGraph iGraph(n, m, gfn, gfm);
     
-    cout << iGraph.isConnected() << endl;
+    if (iGraph.isConnected()) {
+        iGraph.destinationsPickingHistogram("destinationsPickingHistogram.txt");
+    } else {
+        cout << "Graph is not connected" << endl;
+    }
     
     return 0;
 }
