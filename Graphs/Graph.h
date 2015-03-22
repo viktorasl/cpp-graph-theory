@@ -19,6 +19,7 @@ class Graph
 {
 private:
     GeneratingFunction *function;
+protected:
     std::vector<Vertex *> sourceVertexes;
     std::vector<Vertex *> destinationVertexes;
     Graph();
@@ -26,9 +27,11 @@ public:
     Graph(long n, long m, GeneratingFunction *function);
     ~Graph();
 private:
+    void recursivelyCheckConnection(Vertex *current, long &visitedCount);
+    long generateEdgesCount();
+protected:
     void connectSourceAndDestinationVertexes();
     void connectSourcesToEachOther();
-    void recursivelyCheckConnection(Vertex *current, long &visitedCount);
 public:
     bool isConnected();
     /**

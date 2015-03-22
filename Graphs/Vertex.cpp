@@ -10,10 +10,11 @@
 
 using namespace std;
 
-Vertex::Vertex(VertexType type, long key)
+Vertex::Vertex(VertexType type, long key, double factor)
 {
     this->type = type;
     this->key = key;
+    this->factor = factor;
 }
 
 void Vertex::connectToVertex(Vertex *vertex)
@@ -51,6 +52,11 @@ void Vertex::connectConnectionsToEachOther(bool** taken)
 long Vertex::getKey()
 {
     return key;
+}
+
+double Vertex::getFactor()
+{
+    return factor;
 }
 
 bool Vertex::isVisited()

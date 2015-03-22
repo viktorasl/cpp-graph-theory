@@ -21,16 +21,18 @@ class Vertex {
 private:
     bool visited;
     long key;
+    double factor;
     VertexType type;
     std::vector<Vertex *> connections;
 public:
-    Vertex(VertexType type, long key);
+    Vertex(VertexType type, long key, double factor);
 private:
     bool connectToVertexIfNotExist(Vertex *vertex);
 public:
     void connectToVertex(Vertex *vertex);
     void connectConnectionsToEachOther(bool** taken);
     long getKey();
+    double getFactor();
     bool isVisited();
     void setVisited(bool isVisited);
     VertexType getType();

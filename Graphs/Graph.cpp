@@ -23,10 +23,10 @@ Graph::Graph(long n, long m, GeneratingFunction *function)
 #endif
     cout << "Generating source & destination vertexes..." << endl;
     for (long i = 0; i < n; i++) {
-        sourceVertexes.push_back(new Vertex(VertexTypeSource, i));
+        sourceVertexes.push_back(new Vertex(VertexTypeSource, i, 0));
     }
     for (long i = 0; i < m; i++) {
-        destinationVertexes.push_back(new Vertex(VertexTypeDestination, i));
+        destinationVertexes.push_back(new Vertex(VertexTypeDestination, i, 0));
     }
     
     this->function = function;

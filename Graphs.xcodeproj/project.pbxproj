@@ -16,6 +16,7 @@
 		6E3A44841A9D098400769DBA /* Vertex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6E3A44821A9D098400769DBA /* Vertex.cpp */; };
 		6E7115061AB08F5900A95BB3 /* GeneratingFunction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6E7115041AB08F5900A95BB3 /* GeneratingFunction.cpp */; };
 		6E7C706A1AA20627003AD14F /* Random.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6E7C70681AA20627003AD14F /* Random.cpp */; };
+		6E979B3C1ABDD07800CF5BF5 /* InhomogenicGraph.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6E979B3A1ABDD07800CF5BF5 /* InhomogenicGraph.cpp */; };
 		6E9B0E261AB09C9F0048808E /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6E9B0E251AB09C9F0048808E /* main.cpp */; };
 		6E9B0E2B1AB09CBB0048808E /* TestGeneratingFunction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6E9B0E2A1AB09CBB0048808E /* TestGeneratingFunction.cpp */; };
 		6E9B0E2C1AB0A1470048808E /* GeneratingFunction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6E7115041AB08F5900A95BB3 /* GeneratingFunction.cpp */; };
@@ -54,6 +55,8 @@
 		6E7115051AB08F5900A95BB3 /* GeneratingFunction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeneratingFunction.h; sourceTree = "<group>"; };
 		6E7C70681AA20627003AD14F /* Random.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Random.cpp; sourceTree = "<group>"; };
 		6E7C70691AA20627003AD14F /* Random.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Random.h; sourceTree = "<group>"; };
+		6E979B3A1ABDD07800CF5BF5 /* InhomogenicGraph.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = InhomogenicGraph.cpp; sourceTree = "<group>"; };
+		6E979B3B1ABDD07800CF5BF5 /* InhomogenicGraph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InhomogenicGraph.h; sourceTree = "<group>"; };
 		6E9B0E231AB09C9F0048808E /* GraphsTests */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = GraphsTests; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E9B0E251AB09C9F0048808E /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		6E9B0E2A1AB09CBB0048808E /* TestGeneratingFunction.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TestGeneratingFunction.cpp; sourceTree = "<group>"; };
@@ -107,6 +110,8 @@
 				6E7C70691AA20627003AD14F /* Random.h */,
 				6E7115041AB08F5900A95BB3 /* GeneratingFunction.cpp */,
 				6E7115051AB08F5900A95BB3 /* GeneratingFunction.h */,
+				6E979B3A1ABDD07800CF5BF5 /* InhomogenicGraph.cpp */,
+				6E979B3B1ABDD07800CF5BF5 /* InhomogenicGraph.h */,
 			);
 			path = Graphs;
 			sourceTree = "<group>";
@@ -201,6 +206,7 @@
 				6E7C706A1AA20627003AD14F /* Random.cpp in Sources */,
 				6E7115061AB08F5900A95BB3 /* GeneratingFunction.cpp in Sources */,
 				6E3A44841A9D098400769DBA /* Vertex.cpp in Sources */,
+				6E979B3C1ABDD07800CF5BF5 /* InhomogenicGraph.cpp in Sources */,
 				6E3A44811A9D092F00769DBA /* Graph.cpp in Sources */,
 				6E3A44791A9D03EF00769DBA /* main.cpp in Sources */,
 			);

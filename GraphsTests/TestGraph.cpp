@@ -23,12 +23,12 @@ public:
         int dCount = 4;
         Vertex *s[sCount];
         for (int i = 0; i < sCount; i++) {
-            s[i] = new Vertex(VertexTypeSource, i);
+            s[i] = new Vertex(VertexTypeSource, i, 0);
             graph.sourceVertexes.push_back(s[i]);
         }
         Vertex *d[dCount];
         for (int i = 0; i < sCount; i++) {
-            d[i] = new Vertex(VertexTypeDestination, i);
+            d[i] = new Vertex(VertexTypeDestination, i, 0);
             graph.destinationVertexes.push_back(d[i]);
         }
         
