@@ -18,8 +18,8 @@ class TestGeneratingFunction;
 class GeneratingFunction
 {
 private:
-    float beta;
-    long division;
+    double beta;
+    long precisionFactor;
     double multiplication;
 public:
     /**
@@ -28,10 +28,13 @@ public:
      * @param n         sources count
      * @param precision generated random number from 0 to 1 precision
      */
-    GeneratingFunction(float beta, long m, long n, int precision);
+    GeneratingFunction(double beta, long m, long n, int precision);
 private:
+    double randomizeT();
+    double functionValueWithT(double t);
     long generateWithT(double t);
 public:
+    double randomizeFunctionValue();
     long generate();
     
 #ifdef __UNIT_TEST__
