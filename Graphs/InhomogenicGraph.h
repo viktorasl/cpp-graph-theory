@@ -25,6 +25,7 @@ protected:
     void connectSourceAndDestinationVertexes();
 public:
     void destinationsPickingHistogram(std::string oFileName);
+    void sourceDegreesHistogram(std::string oFileName);
 };
 
 #endif /* defined(__Graphs__InhomogenicGraph__) */

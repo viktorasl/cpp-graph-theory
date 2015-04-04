@@ -38,7 +38,6 @@ void InhomogenicGraph::connectSourceAndDestinationVertexes()
 {
     const double divFactor = sqrt(sourceVertexes.size() * destinationVertexes.size());
     
-    int a = 0;
     for (std::vector<Vertex *>::iterator src = sourceVertexes.begin(); src != sourceVertexes.end(); ++src) {
         for (std::vector<Vertex *>::iterator dst = destinationVertexes.begin(); dst != destinationVertexes.end(); ++dst) {
             double posibility = MIN(((*src)->getFactor() * (*dst)->getFactor()) / divFactor, 1);
@@ -51,11 +50,9 @@ void InhomogenicGraph::connectSourceAndDestinationVertexes()
             if (odd < posibility) {
                 (*src)->connectToVertex(*dst);
                 (*dst)->connectToVertex(*src);
-                a++;
             }
         }
     }
-    cout << a << endl;
 }
 
 void InhomogenicGraph::destinationsPickingHistogram(string oFileName)
@@ -63,6 +60,23 @@ void InhomogenicGraph::destinationsPickingHistogram(string oFileName)
     ofstream file(oFileName);
     for (std::vector<Vertex *>::iterator dst = destinationVertexes.begin(); dst != destinationVertexes.end(); ++dst) {
         file << "w" << (*dst)->getKey() << "\t" << (*dst)->getFactor() << "\t" << (*dst)->possibleWays() << endl;
+    }
+    file.close();
+}
+
+void InhomogenicGraph::sourceDegreesHistogram(std::string oFileName)
+{
+    ofstream file(oFileName);
+    for (std::vector<Vertex *>::iterator src = sourceVertexes.begin(); src != sourceVertexes.end(); ++src) {
+        long degree = 0;
+        cout << (*src)->possibleWays() << endl;
+        for (long i = 0; i < (*src)->possibleWays(); i++) {
+            if ((*src)->connectionAt(i)->getType() == VertexTypeSource) {
+                degree++;
+            }
+        }
+        
+        file << "v" << (*src)->getKey() << "\t" << degree << endl;
     }
     file.close();
 }

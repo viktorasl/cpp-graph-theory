@@ -32,7 +32,11 @@ double GeneratingFunction::functionValueWithU(double u)
 
 double GeneratingFunction::randomizeFunctionValue()
 {
-    return functionValueWithU(randomizeU());
+    double u = randomizeU();
+    if (u == 0) {
+        u = randomizeU();
+    }
+    return functionValueWithU(u);
 }
 
 long GeneratingFunction::generateWithU(double u)
@@ -42,5 +46,9 @@ long GeneratingFunction::generateWithU(double u)
 
 long GeneratingFunction::generate()
 {
-    return generateWithU(randomizeU());
+    double u = randomizeU();
+    if (u == 0) {
+        u = randomizeU();
+    }
+    return generateWithU(u);
 }

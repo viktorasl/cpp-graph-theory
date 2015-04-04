@@ -15,15 +15,15 @@ using namespace std;
 
 int main(int argc, const char * argv[])
 {
-    long n = 20000;
+    long n = 10000;
     long m = 20000;
-    GeneratingFunction *gfn = new GeneratingFunction(2, m, n, 4);
+    GeneratingFunction *gfn = new GeneratingFunction(1.5, m, n, 4);
     GeneratingFunction *gfm = new GeneratingFunction(3, m, n, 4);
     
     InhomogenicGraph iGraph(n, m, gfn, gfm);
     
     if (iGraph.isConnected()) {
-        iGraph.destinationsPickingHistogram("destinationsPickingHistogram.txt");
+        iGraph.sourceDegreesHistogram("destinationsPickingHistogram.txt");
     } else {
         cout << "Graph is not connected" << endl;
     }
