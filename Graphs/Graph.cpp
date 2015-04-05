@@ -183,8 +183,6 @@ long * Graph::getSourceDegrees(int segments)
 
 void Graph::sourceDegreesHistogram(std::string oFileName, int segments)
 {
-    cout << sizeof(getSourceDegrees(segments)) << endl;
-    
     stringstream outputFile;
     outputFile << oFileName << ".txt";
     ofstream file(outputFile.str());

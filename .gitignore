@@ -27,3 +27,6 @@
 *.exe
 *.out
 *.app
+
+Graphs/Histograms/*.png
+Graphs/Histograms/*.txt
