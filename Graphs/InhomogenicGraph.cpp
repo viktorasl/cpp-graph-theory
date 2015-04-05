@@ -12,6 +12,7 @@
 #include "GeneratingFunction.h"
 #include <math.h>
 #include <fstream>
+#include <sstream>
 
 #define MIN(a,b) ((a) < (b) ? a : b)
 
@@ -64,9 +65,11 @@ void InhomogenicGraph::destinationsPickingHistogram(string oFileName)
     file.close();
 }
 
-void InhomogenicGraph::sourceDegreesHistogram(std::string oFileName)
+long * InhomogenicGraph::getSourceDegrees(int segments)
 {
-    ofstream file(oFileName);
+    long *data = new long[segments]{0};
+    long segmentSize = (long)(sourceVertexes.size() / segments);
+    
     for (std::vector<Vertex *>::iterator src = sourceVertexes.begin(); src != sourceVertexes.end(); ++src) {
         long degree = 0;
         cout << (*src)->possibleWays() << endl;
@@ -75,8 +78,28 @@ void InhomogenicGraph::sourceDegreesHistogram(std::string oFileName)
                 degree++;
             }
         }
-        
-        file << "v" << (*src)->getKey() << "\t" << degree << endl;
+        data[MIN((long)(degree / segmentSize), segments - 1)]++;
+    }
+    return data;
+}
+
+void InhomogenicGraph::sourceDegreesHistogram(std::string oFileName, int segments)
+{
+    cout << sizeof(getSourceDegrees(segments)) << endl;
+    
+    stringstream outputFile;
+    outputFile << oFileName << ".txt";
+    ofstream file(outputFile.str());
+    
+    long *data = getSourceDegrees(segments);
+    
+    for (long i = 0; i < segments; i++) {
+        file << data[i] << endl;
     }
     file.close();
+
+    stringstream rubyExecutable;
+    rubyExecutable << "ruby histogram.rb draw " << outputFile.str() << " " << oFileName;
+    const char *exec = rubyExecutable.str().c_str();
+    system(exec);
 }

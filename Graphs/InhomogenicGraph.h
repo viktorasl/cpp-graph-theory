@@ -21,11 +21,13 @@ private:
     GeneratingFunction * const gf;
 public:
     InhomogenicGraph(long n, long m, GeneratingFunction* gfn, GeneratingFunction *gfm);
+private:
+    long * getSourceDegrees(int segments);
 protected:
     void connectSourceAndDestinationVertexes();
 public:
     void destinationsPickingHistogram(std::string oFileName);
-    void sourceDegreesHistogram(std::string oFileName);
+    void sourceDegreesHistogram(std::string oFileName, int segments);
 };
 
 #endif /* defined(__Graphs__InhomogenicGraph__) */
