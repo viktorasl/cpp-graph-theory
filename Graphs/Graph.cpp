@@ -13,6 +13,10 @@
 #include "Random.h"
 #include "Vertex.h"
 #include "GeneratingFunction.h"
+#include <fstream>
+#include <sstream>
+
+#define MIN(a,b) ((a) < (b) ? a : b)
 
 using namespace std;
 
@@ -149,4 +153,51 @@ long Graph::stepsCount(long sourceIndex, long destIndex)
     }
     
     return steps;
+}
+
+void Graph::destinationsPickingHistogram(string oFileName)
+{
+    ofstream file(oFileName);
+    for (std::vector<Vertex *>::iterator dst = destinationVertexes.begin(); dst != destinationVertexes.end(); ++dst) {
+        file << "w" << (*dst)->getKey() << "\t" << (*dst)->getFactor() << "\t" << (*dst)->possibleWays() << endl;
+    }
+    file.close();
+}
+
+long * Graph::getSourceDegrees(int segments)
+{
+    long *data = new long[segments]{0};
+    long segmentSize = (long)(sourceVertexes.size() / segments);
+    
+    for (std::vector<Vertex *>::iterator src = sourceVertexes.begin(); src != sourceVertexes.end(); ++src) {
+        long degree = 0;
+        for (long i = 0; i < (*src)->possibleWays(); i++) {
+            if ((*src)->connectionAt(i)->getType() == VertexTypeSource) {
+                degree++;
+            }
+        }
+        data[MIN((long)(degree / segmentSize), segments - 1)]++;
+    }
+    return data;
+}
+
+void Graph::sourceDegreesHistogram(std::string oFileName, int segments)
+{
+    cout << sizeof(getSourceDegrees(segments)) << endl;
+    
+    stringstream outputFile;
+    outputFile << oFileName << ".txt";
+    ofstream file(outputFile.str());
+    
+    long *data = getSourceDegrees(segments);
+    
+    for (long i = 0; i < segments; i++) {
+        file << data[i] << endl;
+    }
+    file.close();
+    
+    stringstream rubyExecutable;
+    rubyExecutable << "ruby histogram.rb draw " << outputFile.str() << " " << oFileName;
+    const char *exec = rubyExecutable.str().c_str();
+    system(exec);
 }

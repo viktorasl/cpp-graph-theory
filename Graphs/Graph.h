@@ -29,6 +29,7 @@ public:
 private:
     void recursivelyCheckConnection(Vertex *current, long &visitedCount);
     long generateEdgesCount();
+    long * getSourceDegrees(int segments);
 protected:
     void connectSourceAndDestinationVertexes();
     void connectSourcesToEachOther();
@@ -41,6 +42,8 @@ public:
      * @param destIndex destination vertex index
      */
     long stepsCount(long sourceIndex, long destIndex);
+    void destinationsPickingHistogram(std::string oFileName);
+    void sourceDegreesHistogram(std::string oFileName, int segments);
     
 #ifdef __UNIT_TEST__
     friend class TestGraph;
