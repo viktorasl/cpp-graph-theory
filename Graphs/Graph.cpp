@@ -97,7 +97,6 @@ void Graph::connectSourcesToEachOther()
     }
     
     for (vector<Vertex *>::iterator it = destinationVertexes.begin(); it != destinationVertexes.end(); ++it) {
-        cout << "Destination vertex " << distance(destinationVertexes.begin(), it) << endl;
         (*it)->connectConnectionsToEachOther(taken);
     }
 }

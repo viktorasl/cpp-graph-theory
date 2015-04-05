@@ -39,18 +39,18 @@ public:
         connectEachOther(s[2], d[3]);
         connectEachOther(s[3], d[3]);
         
-        cout << __func__ << ":test1: " << ((graph.isConnected() == false)? "passed" : "failed") << endl;
+        tout << ":test1: " << ((graph.isConnected() == false)? "passed" : "failed") << endl;
         
         connectEachOther(s[2], d[1]);
         
-        cout << __func__ << ":test2: " << ((graph.isConnected() == true)? "passed" : "failed") << endl;
+        tout << ":test2: " << ((graph.isConnected() == true)? "passed" : "failed") << endl;
         
         graph.connectSourcesToEachOther();
         
-        cout << __func__ << ":test3: " << (((s[0]->connections.size() == 4) && isConnected(s[0], new Vertex*[2]{s[1], s[2]}, 2))? "passed" : "failed") << endl;
-        cout << __func__ << ":test4: " << (((s[1]->connections.size() == 4) && isConnected(s[1], new Vertex*[2]{s[0], s[2]}, 2))? "passed" : "failed") << endl;
-        cout << __func__ << ":test5: " << (((s[2]->connections.size() == 5) && isConnected(s[2], new Vertex*[3]{s[0], s[1], s[3]}, 3))? "passed" : "failed") << endl;
-        cout << __func__ << ":test6: " << (((s[3]->connections.size() == 2) && isConnected(s[3], new Vertex*[1]{s[2]}, 1))? "passed" : "failed") << endl;
+        tout << ":test3: " << (((s[0]->connections.size() == 4) && isConnected(s[0], new Vertex*[2]{s[1], s[2]}, 2))? "passed" : "failed") << endl;
+        tout << ":test4: " << (((s[1]->connections.size() == 4) && isConnected(s[1], new Vertex*[2]{s[0], s[2]}, 2))? "passed" : "failed") << endl;
+        tout << ":test5: " << (((s[2]->connections.size() == 5) && isConnected(s[2], new Vertex*[3]{s[0], s[1], s[3]}, 3))? "passed" : "failed") << endl;
+        tout << ":test6: " << (((s[3]->connections.size() == 2) && isConnected(s[3], new Vertex*[1]{s[2]}, 1))? "passed" : "failed") << endl;
     }
 private:
     void connectEachOther(Vertex *v1, Vertex *v2)
