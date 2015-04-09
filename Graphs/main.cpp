@@ -7,6 +7,7 @@
 //
 
 #include <iostream>
+#include <chrono>
 #include "Graph.h"
 #include "GeneratingFunction.h"
 #include "InhomogenicGraph.h"
@@ -20,9 +21,15 @@ int main(int argc, const char * argv[])
     GeneratingFunction *gfn = new GeneratingFunction(1.5, m, n, 4);
     GeneratingFunction *gfm = new GeneratingFunction(1.5, m, n, 4);
     
-    InhomogenicGraph iGraph(n, m, gfn, gfm);
+    chrono::high_resolution_clock::time_point startT = chrono::high_resolution_clock::now();
+    InhomogenicGraph graph(n, m, gfn, gfm);
+//    Graph graph(n, m, gfn);
+    chrono::high_resolution_clock::time_point endT = chrono::high_resolution_clock::now();
     
-    iGraph.sourceDegreesHistogram("destinationsPickingHistogram", 100);
+    auto duration = chrono::duration_cast<chrono::milliseconds>(endT - startT).count();
+    cout << duration << "ms" << endl;
+    
+    graph.sourceDegreesHistogram("nonhomogenic-beta=1.5beta=1.5", 100);
     
     return 0;
 }

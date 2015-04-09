@@ -19,9 +19,6 @@ using namespace std;
 InhomogenicGraph::InhomogenicGraph(long n, long m, GeneratingFunction* gfn, GeneratingFunction *gfm)
     :gf(gfn)
 {
-#ifdef DEBUG
-    cout << n << " source vertexes, " << m << " destination vertexes." << endl;
-#endif
     cout << "Generating source & destination vertexes..." << endl;
     for (long i = 0; i < n; i++) {
         sourceVertexes.push_back(new Vertex(VertexTypeSource, i, gfn->randomizeFunctionValue()));
@@ -46,7 +43,7 @@ void InhomogenicGraph::connectSourceAndDestinationVertexes()
                 odd = this->gf->randomizeU();
             }
             
-            if (odd < posibility) {
+            if (posibility > odd) {
                 (*src)->connectToVertex(*dst);
                 (*dst)->connectToVertex(*src);
             }
