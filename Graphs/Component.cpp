@@ -10,16 +10,25 @@
 #include <iostream>
 #include <random>
 
+#define MIN(a,b) ((a) < (b) ? a : b)
+
 using namespace std;
 
-void Component::visitAndReturn()
+long * Component::visitAndReturn(long segmentSize, long& segments, long& degreeAverage)
 {
-    Vertex *current = start;
+    segments = ceil(size / segmentSize);
+    long totaldegrees = 0;
     long stepsCount = 0;
+    long *data = new long[segments]{0};
+    Vertex *current = start;
     do {
         stepsCount++;
+        totaldegrees += current->possibleWays();
+        data[MIN((long)(current->possibleWays() / segmentSize), segments - 1)]++;
         long idx = arc4random() % current->possibleWays();
         current = current->connectionAt(idx);
     } while (current != start);
-    cout << stepsCount << endl;
+    degreeAverage = totaldegrees / stepsCount;
+    
+    return data;
 }

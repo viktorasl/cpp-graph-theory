@@ -15,7 +15,7 @@ typedef struct {
     Vertex *start;
     long size;
     
-    void visitAndReturn();
+    long * visitAndReturn(long segmentSize, long& segments, long& degreeAverage);
 } Component;
 
 #endif /* defined(__Graphs__Component__) */
