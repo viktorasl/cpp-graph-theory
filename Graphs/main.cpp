@@ -8,6 +8,7 @@
 
 #include <iostream>
 #include <chrono>
+#include <sstream>
 #include "Graph.h"
 #include "GeneratingFunction.h"
 #include "InhomogenicGraph.h"
@@ -18,8 +19,10 @@ int main(int argc, const char * argv[])
 {
     long n = 10000;
     long m = 20000;
-    GeneratingFunction *gfn = new GeneratingFunction(1.5, m, n, 4);
-    GeneratingFunction *gfm = new GeneratingFunction(1.5, m, n, 4);
+    double beta1 = 1.5;
+    double beta2 = 1.5;
+    GeneratingFunction *gfn = new GeneratingFunction(beta1, m, n, 4);
+    GeneratingFunction *gfm = new GeneratingFunction(beta2, m, n, 4);
     
     chrono::high_resolution_clock::time_point startT = chrono::high_resolution_clock::now();
     InhomogenicGraph graph(n, m, gfn, gfm);
@@ -38,7 +41,9 @@ int main(int argc, const char * argv[])
         }
     }
     
-    graph.sourceDegreesHistogram("nonhomogenic-beta=1.5beta=1.5", 100);
+    stringstream ss;
+    ss << "nonhomogenic-beta1=" << beta1 << "beta2=" << beta2;
+    graph.sourceDegreesHistogram(ss.str(), 100);
     
     return 0;
 }
