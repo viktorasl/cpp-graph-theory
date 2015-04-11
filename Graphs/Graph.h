@@ -29,7 +29,6 @@ public:
     ~Graph();
 private:
     long generateEdgesCount();
-    long * getSourceDegrees(int segments);
 protected:
     void connectSourceAndDestinationVertexes();
     void connectSourcesToEachOther();
@@ -44,7 +43,7 @@ public:
     long stepsCount(long sourceIndex, long destIndex);
     std::vector<Component> findingComponents();
     void destinationsPickingHistogram(std::string oFileName);
-    void sourceDegreesHistogram(std::string oFileName, int segments);
+    long * getSourceDegrees(int segments);
     
 #ifdef __UNIT_TEST__
     friend class TestGraph;

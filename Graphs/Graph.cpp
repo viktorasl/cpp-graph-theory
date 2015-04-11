@@ -171,22 +171,3 @@ long * Graph::getSourceDegrees(int segments)
     }
     return data;
 }
-
-void Graph::sourceDegreesHistogram(std::string oFileName, int segments)
-{
-    stringstream outputFile;
-    outputFile << oFileName << ".txt";
-    ofstream file(outputFile.str());
-    
-    long *data = getSourceDegrees(segments);
-    
-    for (long i = 0; i < segments; i++) {
-        file << data[i] << endl;
-    }
-    file.close();
-    
-    stringstream rubyExecutable;
-    rubyExecutable << "ruby histogram.rb draw " << outputFile.str() << " " << oFileName;
-    const char *exec = rubyExecutable.str().c_str();
-    system(exec);
-}
