@@ -146,17 +146,26 @@ void Graph::destinationsPickingHistogram(string oFileName)
 
 vector<Component> Graph::findingComponents()
 {
-    bool *visited = new bool[sourceVertexes.size()];
-    long count = 0;
+    bool *visited = new bool[sourceVertexes.size()]{false};
     vector<Component> components;
+    long currentIdx = 0;
     
-    vector<Vertex *>::iterator current = sourceVertexes.begin();
-    (*current)->findChildComponents(count, visited);
-    
-    components.push_back(Component {
-        .start = *current,
-        .size = count
-    });
+    while (1) {
+        while ((currentIdx < sourceVertexes.size()) && (visited[currentIdx] == true)) {
+            currentIdx++;
+        }
+        if (currentIdx >= sourceVertexes.size()) {
+            break;
+        }
+        long count = 0;
+        Vertex *current = sourceVertexes[currentIdx];
+        current->findChildComponents(count, visited);
+        
+        components.push_back(Component {
+            .start = current,
+            .size = count
+        });
+    }
     
     delete visited;
     return components;
