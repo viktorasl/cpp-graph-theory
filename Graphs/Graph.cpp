@@ -71,7 +71,6 @@ void Graph::connectSourceAndDestinationVertexes()
             long index = rand.nextUnique();
             
             Vertex *destinationVertex = destinationVertexes.at(index);
-            sourceVertex->connectToVertex(destinationVertex);
             destinationVertex->connectToVertex(sourceVertex);
         }
     }

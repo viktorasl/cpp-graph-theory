@@ -44,7 +44,6 @@ void InhomogenicGraph::connectSourceAndDestinationVertexes()
             }
             
             if (posibility > odd) {
-                (*src)->connectToVertex(*dst);
                 (*dst)->connectToVertex(*src);
             }
         }
