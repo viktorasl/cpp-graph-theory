@@ -17,7 +17,7 @@ GeneratingFunction::GeneratingFunction(double beta, long m, long n, int precisio
     : precisionFactor(pow(10, precision))
 {
     this->beta = beta;
-    this->multiplication = sqrt((double)(m / n));
+    this->multiplication = sqrt((double)m / (double)n);
 }
 
 double GeneratingFunction::randomizeU()
