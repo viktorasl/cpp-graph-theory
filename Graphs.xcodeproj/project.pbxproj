@@ -14,6 +14,7 @@
 		6E3A44791A9D03EF00769DBA /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6E3A44781A9D03EF00769DBA /* main.cpp */; };
 		6E3A44811A9D092F00769DBA /* Graph.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6E3A447F1A9D092F00769DBA /* Graph.cpp */; };
 		6E3A44841A9D098400769DBA /* Vertex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6E3A44821A9D098400769DBA /* Vertex.cpp */; };
+		6E4406DF1AD97A6E00160800 /* Component.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6E4406DD1AD97A6E00160800 /* Component.cpp */; };
 		6E7115061AB08F5900A95BB3 /* GeneratingFunction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6E7115041AB08F5900A95BB3 /* GeneratingFunction.cpp */; };
 		6E7C706A1AA20627003AD14F /* Random.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6E7C70681AA20627003AD14F /* Random.cpp */; };
 		6E979B3C1ABDD07800CF5BF5 /* InhomogenicGraph.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6E979B3A1ABDD07800CF5BF5 /* InhomogenicGraph.cpp */; };
@@ -51,6 +52,8 @@
 		6E3A44801A9D092F00769DBA /* Graph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Graph.h; sourceTree = "<group>"; };
 		6E3A44821A9D098400769DBA /* Vertex.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Vertex.cpp; sourceTree = "<group>"; };
 		6E3A44831A9D098400769DBA /* Vertex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vertex.h; sourceTree = "<group>"; };
+		6E4406DD1AD97A6E00160800 /* Component.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Component.cpp; sourceTree = "<group>"; };
+		6E4406DE1AD97A6E00160800 /* Component.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Component.h; sourceTree = "<group>"; };
 		6E4986211AD149480043D901 /* GraphsTestsPrefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GraphsTestsPrefix.pch; sourceTree = "<group>"; };
 		6E7115041AB08F5900A95BB3 /* GeneratingFunction.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GeneratingFunction.cpp; sourceTree = "<group>"; };
 		6E7115051AB08F5900A95BB3 /* GeneratingFunction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeneratingFunction.h; sourceTree = "<group>"; };
@@ -114,6 +117,8 @@
 				6E7115051AB08F5900A95BB3 /* GeneratingFunction.h */,
 				6E979B3A1ABDD07800CF5BF5 /* InhomogenicGraph.cpp */,
 				6E979B3B1ABDD07800CF5BF5 /* InhomogenicGraph.h */,
+				6E4406DD1AD97A6E00160800 /* Component.cpp */,
+				6E4406DE1AD97A6E00160800 /* Component.h */,
 			);
 			path = Graphs;
 			sourceTree = "<group>";
@@ -215,6 +220,7 @@
 			files = (
 				6E7C706A1AA20627003AD14F /* Random.cpp in Sources */,
 				6E7115061AB08F5900A95BB3 /* GeneratingFunction.cpp in Sources */,
+				6E4406DF1AD97A6E00160800 /* Component.cpp in Sources */,
 				6E3A44841A9D098400769DBA /* Vertex.cpp in Sources */,
 				6E979B3C1ABDD07800CF5BF5 /* InhomogenicGraph.cpp in Sources */,
 				6E3A44811A9D092F00769DBA /* Graph.cpp in Sources */,

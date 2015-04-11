@@ -11,14 +11,10 @@
 
 #include <stdio.h>
 #include <vector>
+#include "Component.h"
 
 class Vertex;
 class GeneratingFunction;
-
-typedef struct {
-    Vertex *start;
-    long size;
-} Component;
 
 class Graph
 {

@@ -40,6 +40,7 @@ int main(int argc, const char * argv[])
             break;
         }
     }
+    components[0].visitAndReturn();
     
     stringstream ss;
     ss << "nonhomogenic-beta1=" << beta1 << "beta2=" << beta2;
