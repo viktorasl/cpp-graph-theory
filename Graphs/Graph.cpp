@@ -28,10 +28,10 @@ using namespace std;
 Graph::Graph(long n, long m, GeneratingFunction *function)
 {
     for (long i = 0; i < n; i++) {
-        sourceVertexes.push_back(new Vertex(VertexTypeSource, i, 0));
+        sourceVertexes.push_back(new Vertex(i, 0));
     }
     for (long i = 0; i < m; i++) {
-        destinationVertexes.push_back(new Vertex(VertexTypeDestination, i, 0));
+        destinationVertexes.push_back(new Vertex(i, 0));
     }
     
     this->function = function;
@@ -166,9 +166,7 @@ long * Graph::getSourceDegrees(int segments)
     for (std::vector<Vertex *>::iterator src = sourceVertexes.begin(); src != sourceVertexes.end(); ++src) {
         long degree = 0;
         for (long i = 0; i < (*src)->possibleWays(); i++) {
-            if ((*src)->connectionAt(i)->getType() == VertexTypeSource) {
-                degree++;
-            }
+            degree++;
         }
         data[MIN((long)(degree / segmentSize), segments - 1)]++;
     }

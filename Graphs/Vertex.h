@@ -12,19 +12,13 @@
 #include <stdio.h>
 #include <vector>
 
-enum VertexType {
-    VertexTypeSource,
-    VertexTypeDestination
-};
-
 class Vertex {
 private:
     long key;
     double factor;
-    VertexType type;
     std::vector<Vertex *> connections;
 public:
-    Vertex(VertexType type, long key, double factor);
+    Vertex(long key, double factor);
 private:
     bool connectToVertexIfNotExist(Vertex *vertex);
 public:
@@ -32,7 +26,6 @@ public:
     void connectConnectionsToEachOther(bool** taken);
     long getKey();
     double getFactor();
-    VertexType getType();
     long possibleWays();
     Vertex *connectionAt(long index);
     void findChildComponents(long &count, bool visited[]);

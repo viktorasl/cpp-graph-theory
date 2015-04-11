@@ -10,9 +10,8 @@
 
 using namespace std;
 
-Vertex::Vertex(VertexType type, long key, double factor)
+Vertex::Vertex(long key, double factor)
 {
-    this->type = type;
     this->key = key;
     this->factor = factor;
 }
@@ -59,11 +58,6 @@ double Vertex::getFactor()
     return factor;
 }
 
-VertexType Vertex::getType()
-{
-    return type;
-}
-
 long Vertex::possibleWays()
 {
     return connections.size();
@@ -79,7 +73,7 @@ void Vertex::findChildComponents(long &count, bool visited[])
     count++;
     visited[getKey()] = true;
     for (vector<Vertex *>::iterator it = connections.begin(); it != connections.end(); ++it) {
-        if (((*it)->type == VertexTypeSource) && (visited[(*it)->getKey()] == false)) {
+        if (visited[(*it)->getKey()] == false) {
             (*it)->findChildComponents(count, visited);
         }
     }
