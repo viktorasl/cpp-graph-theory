@@ -18,6 +18,11 @@
 
 #define MIN(a,b) ((a) < (b) ? a : b)
 
+bool highToLowComponents(Component i, Component j)
+{
+    return i.size < j.size;
+}
+
 using namespace std;
 
 Graph::Graph(long n, long m, GeneratingFunction *function)
@@ -146,6 +151,8 @@ vector<Component> Graph::findingComponents()
             .size = count
         });
     }
+    
+    sort(components.begin(), components.end(), highToLowComponents);
     
     delete visited;
     return components;

@@ -30,6 +30,13 @@ int main(int argc, const char * argv[])
     cout << duration << "ms" << endl;
     
     vector<Component> components = graph.findingComponents();
+    int idx = 1;
+    for (vector<Component>::iterator it = components.begin(); it != components.end(); ++it) {
+        cout << "C" << idx++ << " size " << it->size << endl;
+        if (idx == 2) {
+            break;
+        }
+    }
     
     graph.sourceDegreesHistogram("nonhomogenic-beta=1.5beta=1.5", 100);
     
