@@ -15,6 +15,11 @@
 class Vertex;
 class GeneratingFunction;
 
+typedef struct {
+    Vertex *start;
+    long size;
+} Component;
+
 class Graph
 {
 private:
@@ -42,6 +47,7 @@ public:
      * @param destIndex destination vertex index
      */
     long stepsCount(long sourceIndex, long destIndex);
+    std::vector<Component> findingComponents();
     void destinationsPickingHistogram(std::string oFileName);
     void sourceDegreesHistogram(std::string oFileName, int segments);
     

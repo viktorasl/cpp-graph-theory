@@ -29,6 +29,8 @@ int main(int argc, const char * argv[])
     auto duration = chrono::duration_cast<chrono::milliseconds>(endT - startT).count();
     cout << duration << "ms" << endl;
     
+    vector<Component> components = graph.findingComponents();
+    
     graph.sourceDegreesHistogram("nonhomogenic-beta=1.5beta=1.5", 100);
     
     return 0;

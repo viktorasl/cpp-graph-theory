@@ -83,3 +83,14 @@ Vertex* Vertex::connectionAt(long index)
 {
     return connections.at(index);
 }
+
+void Vertex::findChildComponents(long &count, bool visited[])
+{
+    count++;
+    visited[getKey()] = true;
+    for (vector<Vertex *>::iterator it = connections.begin(); it != connections.end(); ++it) {
+        if ((*it)->type == VertexTypeSource && visited[(*it)->getKey()] == false) {
+            (*it)->findChildComponents(count, visited);
+        }
+    }
+}

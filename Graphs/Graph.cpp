@@ -144,6 +144,24 @@ void Graph::destinationsPickingHistogram(string oFileName)
     file.close();
 }
 
+vector<Component> Graph::findingComponents()
+{
+    bool *visited = new bool[sourceVertexes.size()];
+    long count = 0;
+    vector<Component> components;
+    
+    vector<Vertex *>::iterator current = sourceVertexes.begin();
+    (*current)->findChildComponents(count, visited);
+    
+    components.push_back(Component {
+        .start = *current,
+        .size = count
+    });
+    
+    delete visited;
+    return components;
+}
+
 long * Graph::getSourceDegrees(int segments)
 {
     long *data = new long[segments]{0};

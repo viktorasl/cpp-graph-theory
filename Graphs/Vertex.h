@@ -38,6 +38,7 @@ public:
     VertexType getType();
     long possibleWays();
     Vertex *connectionAt(long index);
+    void findChildComponents(long &count, bool visited[]);
     
 #ifdef __UNIT_TEST__
     friend class TestGraph;
