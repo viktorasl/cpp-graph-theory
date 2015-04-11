@@ -32,7 +32,6 @@ public:
     Graph(long n, long m, GeneratingFunction *function);
     ~Graph();
 private:
-    void recursivelyCheckConnection(Vertex *current, long &visitedCount);
     long generateEdgesCount();
     long * getSourceDegrees(int segments);
 protected:

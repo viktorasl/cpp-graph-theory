@@ -89,32 +89,12 @@ void Graph::connectSourcesToEachOther()
 
 bool Graph::isConnected()
 {
-    // Clearing visitation
-    for (vector<Vertex *>::iterator it = sourceVertexes.begin(); it != sourceVertexes.end(); ++it) {
-        (*it)->setVisited(false);
-    }
-    for (vector<Vertex *>::iterator it = destinationVertexes.begin(); it != destinationVertexes.end(); ++it) {
-        (*it)->setVisited(false);
-    }
-    
+    bool *visited = new bool[sourceVertexes.size()]{false};
     Vertex *current = sourceVertexes[0];
-    long connectedCount = 0;
-    long totalCount = sourceVertexes.size() + destinationVertexes.size();
-    recursivelyCheckConnection(current, connectedCount);
+    long count = 0;
+    current->findChildComponents(count, visited);
     
-    return connectedCount == totalCount;
-}
-
-void Graph::recursivelyCheckConnection(Vertex *current, long &visitedCount)
-{
-    if (! current->isVisited()) {
-        current->setVisited(true);
-        (visitedCount)++;
-        
-        for (long idx = 0; idx < current->possibleWays(); idx++) {
-            recursivelyCheckConnection(current->connectionAt(idx), visitedCount);
-        }
-    }
+    return count == sourceVertexes.size();
 }
 
 long Graph::stepsCount(long sourceIndex, long destIndex)

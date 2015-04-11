@@ -19,7 +19,6 @@ enum VertexType {
 
 class Vertex {
 private:
-    bool visited;
     long key;
     double factor;
     VertexType type;
@@ -33,8 +32,6 @@ public:
     void connectConnectionsToEachOther(bool** taken);
     long getKey();
     double getFactor();
-    bool isVisited();
-    void setVisited(bool isVisited);
     VertexType getType();
     long possibleWays();
     Vertex *connectionAt(long index);

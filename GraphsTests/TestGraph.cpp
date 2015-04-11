@@ -45,17 +45,19 @@ public:
         
         connectEachOther(s[2], d[1]);
         
-        tout << ":test3: " << ((graph.isConnected() == true)? "passed" : "failed") << endl;
-        
         graph.connectSourcesToEachOther();
         
-        tout << ":test4: " << (((s[0]->connections.size() == 4) && isConnected(s[0], new Vertex*[2]{s[1], s[2]}, 2))? "passed" : "failed") << endl;
-        tout << ":test5: " << (((s[1]->connections.size() == 4) && isConnected(s[1], new Vertex*[2]{s[0], s[2]}, 2))? "passed" : "failed") << endl;
-        tout << ":test6: " << (((s[2]->connections.size() == 5) && isConnected(s[2], new Vertex*[3]{s[0], s[1], s[3]}, 3))? "passed" : "failed") << endl;
-        tout << ":test7: " << (((s[3]->connections.size() == 2) && isConnected(s[3], new Vertex*[1]{s[2]}, 1))? "passed" : "failed") << endl;
+        components = graph.findingComponents();
+        tout << ":test3: " << ((graph.isConnected() == true)? "passed" : "failed") << endl;
+        tout << ":test4: " << ((components.size() == 1) ? "passed" : "failed") << endl;
+        
+        tout << ":test5: " << (((s[0]->connections.size() == 4) && isConnected(s[0], new Vertex*[2]{s[1], s[2]}, 2))? "passed" : "failed") << endl;
+        tout << ":test6: " << (((s[1]->connections.size() == 4) && isConnected(s[1], new Vertex*[2]{s[0], s[2]}, 2))? "passed" : "failed") << endl;
+        tout << ":test7: " << (((s[2]->connections.size() == 5) && isConnected(s[2], new Vertex*[3]{s[0], s[1], s[3]}, 3))? "passed" : "failed") << endl;
+        tout << ":test8: " << (((s[3]->connections.size() == 2) && isConnected(s[3], new Vertex*[1]{s[2]}, 1))? "passed" : "failed") << endl;
         
         long *sd = graph.getSourceDegrees(4);
-        tout << ":test8: " << (((sd[0] == 0) && (sd[1] == 1) && (sd[2] == 2) && (sd[3] == 1))? "passed" : "failed") << endl;
+        tout << ":test9: " << (((sd[0] == 0) && (sd[1] == 1) && (sd[2] == 2) && (sd[3] == 1))? "passed" : "failed") << endl;
     }
 private:
     void connectEachOther(Vertex *v1, Vertex *v2)
