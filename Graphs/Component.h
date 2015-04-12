@@ -16,6 +16,7 @@ typedef struct {
     std::vector<Vertex *>vertexes;
     
     void randomWalk(long segmentSize);
+    static std::vector<long>* segmentise(std::vector<long> *degrees, long segmentSize);
 } Component;
 
 #endif /* defined(__Graphs__Component__) */

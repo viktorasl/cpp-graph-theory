@@ -61,9 +61,33 @@ void Component::randomWalk(long segmentSize)
         }
     } while (!gotToHome || (uniqueVisitCount < (vertexes.size() - 1)));
     
+    Histogram::generate(Component::segmentise(visitsToHomeUnique, segmentSize), "random-walk-to-home-unique");
+    
     delete visitsAllVertexesUnique;
     delete visitsAllVertexes;
     delete visitsToHomeUnique;
     delete visitsToHome;
     delete visited;
+}
+
+vector<long>* Component::segmentise(vector<long> *degrees, long segmentSize)
+{
+    vector<long> *segments = new vector<long>();
+    long stepsCount = 0;
+    long totalDegree = 0;
+    
+    for (vector<long>::iterator it = degrees->begin(); it != degrees->end(); ++it) {
+        stepsCount++;
+        totalDegree += (*it);
+        if (stepsCount % segmentSize == 0) {
+            segments->push_back(totalDegree / segmentSize);
+            totalDegree = 0;
+        }
+    }
+    
+    if (stepsCount % segmentSize != 0) {
+        segments->push_back(totalDegree / segmentSize);
+    }
+    
+    return segments;
 }
