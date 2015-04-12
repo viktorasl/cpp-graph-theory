@@ -43,7 +43,7 @@ public:
     long stepsCount(long sourceIndex, long destIndex);
     std::vector<Component *> findingComponents();
     void destinationsPickingHistogram(std::string oFileName);
-    long * getSourceDegrees(int segments);
+    std::vector<long>* getSourceDegrees(int segments);
     
 #ifdef __UNIT_TEST__
     friend class TestGraph;

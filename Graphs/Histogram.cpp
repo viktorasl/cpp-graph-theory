@@ -13,15 +13,16 @@
 
 using namespace std;
 
-void Histogram::generate(long segments, long *data, string fileName)
+void Histogram::generate(vector<long> *segments, string fileName)
 {
     stringstream outputFile;
     outputFile << fileName << ".txt";
     ofstream file(outputFile.str());
     
-    for (long i = 0; i < segments; i++) {
-        file << data[i] << endl;
+    for (vector<long>::iterator segment = segments->begin(); segment != segments->end(); ++segment) {
+        file << *segment << endl;
     }
+    
     file.close();
     
     stringstream rubyExecutable;

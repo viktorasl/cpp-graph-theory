@@ -20,18 +20,23 @@ void Component::visitAndReturn(long segmentSize)
     long segments = ceil(vertexes.size() / segmentSize);
     long totaldegrees = 0;
     long stepsCount = 0;
-    long *data = new long[segments]{0};
+    vector<long> *data = new vector<long>();
+    for (long idx = 0; idx < segments; idx++) {
+        data->push_back(0);
+    }
+    
     Vertex *start = vertexes[0];
     Vertex *current = start;
     do {
         stepsCount++;
         totaldegrees += current->possibleWays();
-        data[MIN((long)(current->possibleWays() / segmentSize), segments - 1)]++;
+        
+        (*data)[MIN((long)(current->possibleWays() / segmentSize), segments - 1)]++;
         long idx = arc4random() % current->possibleWays();
         current = current->connectionAt(idx);
     } while (current != start);
     long degreeAverage = totaldegrees / stepsCount;
     
-    Histogram::generate(segments, data, "visiting-to-home");
+    Histogram::generate(data, "visiting-to-home");
     cout << "average degrees count is " << degreeAverage << endl;
 }

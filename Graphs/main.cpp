@@ -46,7 +46,7 @@ int main(int argc, const char * argv[])
     
     stringstream ss;
     ss << "nonhomogenic-beta1=" << beta1 << "beta2=" << beta2;
-    Histogram::generate(100, graph.getSourceDegrees(100), ss.str());
+    Histogram::generate(graph.getSourceDegrees(100), ss.str());
     
     return 0;
 }

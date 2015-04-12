@@ -11,11 +11,12 @@
 
 #include <stdio.h>
 #include <string>
+#include <vector>
 
 class Histogram
 {
 public:
-    static void generate(long segments, long *data, std::string fileName);
+    static void generate(std::vector<long> *segments, std::string fileName);
 };
 
 #endif /* defined(__Graphs__Histogram__) */
