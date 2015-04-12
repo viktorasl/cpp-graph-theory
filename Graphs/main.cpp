@@ -42,7 +42,7 @@ int main(int argc, const char * argv[])
         }
     }
     
-    components[0]->visitAndReturn(100);
+    components[0]->randomWalk(100);
     
     stringstream ss;
     ss << "nonhomogenic-beta1=" << beta1 << "beta2=" << beta2;

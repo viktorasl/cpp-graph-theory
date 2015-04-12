@@ -15,7 +15,7 @@
 typedef struct {
     std::vector<Vertex *>vertexes;
     
-    void visitAndReturn(long segmentSize);
+    void randomWalk(long segmentSize);
 } Component;
 
 #endif /* defined(__Graphs__Component__) */
