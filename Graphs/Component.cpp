@@ -21,6 +21,11 @@ void Component::visitAndReturn(long segmentSize)
     long stepsCount = 0;
     vector<long> *data = new vector<long>();
     
+    vector<long> *uniqueData = new vector<long>();
+    bool *visited = new bool[vertexes.size()]{false};
+    long uniqueSteps = 0;
+    long uniqueSegment = 0;
+    
     Vertex *start = vertexes[0];
     Vertex *current = start;
     
@@ -29,6 +34,19 @@ void Component::visitAndReturn(long segmentSize)
         stepsCount++;
         totaldegrees += current->possibleWays();
         segmentDegree += current->possibleWays();
+        
+        vector<Vertex *>::iterator it = find(vertexes.begin(), vertexes.end(), current);
+        long uIdx = distance(vertexes.begin(), it);
+        if (visited[uIdx] == false) {
+            visited[uIdx] = true;
+            
+            uniqueSteps++;
+            uniqueSegment += current->possibleWays();
+            if (uniqueSteps % segmentSize == 0) {
+                uniqueData->push_back(uniqueSegment / segmentSize);
+                uniqueSegment = 0;
+            }
+        }
         
         if (stepsCount % segmentSize == 0) {
             data->push_back(segmentDegree / segmentSize);
@@ -47,4 +65,6 @@ void Component::visitAndReturn(long segmentSize)
     
     Histogram::generate(data, "visiting-to-home");
     cout << "average degrees count is " << degreeAverage << endl;
+    
+    Histogram::generate(uniqueData, "visiting-to-home-unique");
 }
