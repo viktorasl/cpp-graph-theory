@@ -41,7 +41,7 @@ public:
      * @param destIndex destination vertex index
      */
     long stepsCount(long sourceIndex, long destIndex);
-    std::vector<Component> findingComponents();
+    std::vector<Component *> findingComponents();
     void destinationsPickingHistogram(std::string oFileName);
     long * getSourceDegrees(int segments);
     

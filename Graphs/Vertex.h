@@ -28,7 +28,7 @@ public:
     double getFactor();
     long possibleWays();
     Vertex *connectionAt(long index);
-    void findChildComponents(long &count, bool visited[]);
+    void findChildComponents(std::vector<Vertex *> &vertexes, bool visited[]);
     
 #ifdef __UNIT_TEST__
     friend class TestGraph;

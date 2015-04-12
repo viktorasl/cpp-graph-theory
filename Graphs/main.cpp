@@ -33,10 +33,10 @@ int main(int argc, const char * argv[])
     auto duration = chrono::duration_cast<chrono::milliseconds>(endT - startT).count();
     cout << duration << "ms" << endl;
     
-    vector<Component> components = graph.findingComponents();
+    vector<Component *> components = graph.findingComponents();
     int idx = 1;
-    for (vector<Component>::iterator it = components.begin(); it != components.end(); ++it) {
-        cout << "C" << idx++ << " size " << it->size << endl;
+    for (vector<Component *>::iterator it = components.begin(); it != components.end(); ++it) {
+        cout << "C" << idx++ << " size " << (*it)->vertexes.size() << endl;
         if (idx == 2) {
             break;
         }
@@ -44,7 +44,7 @@ int main(int argc, const char * argv[])
     
     long segments = 0;
     long avg = 0;
-    long *s = components[0].visitAndReturn(100, segments, avg);
+    long *s = components[0]->visitAndReturn(100, segments, avg);
     Histogram::generate(segments, s, "visiting-to-home");
     cout << "average degrees count is " << avg << endl;
     

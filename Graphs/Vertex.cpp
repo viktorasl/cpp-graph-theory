@@ -68,13 +68,13 @@ Vertex* Vertex::connectionAt(long index)
     return connections.at(index);
 }
 
-void Vertex::findChildComponents(long &count, bool visited[])
+void Vertex::findChildComponents(vector<Vertex *> &vertexes, bool visited[])
 {
-    count++;
+    vertexes.push_back(this);
     visited[getKey()] = true;
     for (vector<Vertex *>::iterator it = connections.begin(); it != connections.end(); ++it) {
         if (visited[(*it)->getKey()] == false) {
-            (*it)->findChildComponents(count, visited);
+            (*it)->findChildComponents(vertexes, visited);
         }
     }
 }

@@ -10,10 +10,10 @@
 #define __Graphs__Component__
 
 #import "Vertex.h"
+#import <vector>
 
 typedef struct {
-    Vertex *start;
-    long size;
+    std::vector<Vertex *>vertexes;
     
     long * visitAndReturn(long segmentSize, long& segments, long& degreeAverage);
 } Component;

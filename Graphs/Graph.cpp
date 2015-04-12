@@ -18,9 +18,9 @@
 
 #define MIN(a,b) ((a) < (b) ? a : b)
 
-bool highToLowComponents(Component i, Component j)
+bool highToLowComponents(Component *i, Component *j)
 {
-    return i.size < j.size;
+    return i->vertexes.size() < j->vertexes.size();
 }
 
 using namespace std;
@@ -96,7 +96,7 @@ bool Graph::isConnected()
     bool *visited = new bool[sourceVertexes.size()]{false};
     Vertex *current = sourceVertexes[0];
     long count = 0;
-    current->findChildComponents(count, visited);
+//    current->findChildComponents(count, visited);
     
     return count == sourceVertexes.size();
 }
@@ -128,10 +128,10 @@ void Graph::destinationsPickingHistogram(string oFileName)
     file.close();
 }
 
-vector<Component> Graph::findingComponents()
+vector<Component *> Graph::findingComponents()
 {
     bool *visited = new bool[sourceVertexes.size()]{false};
-    vector<Component> components;
+    vector<Component *> components;
     long currentIdx = 0;
     
     while (1) {
@@ -141,14 +141,12 @@ vector<Component> Graph::findingComponents()
         if (currentIdx >= sourceVertexes.size()) {
             break;
         }
-        long count = 0;
-        Vertex *current = sourceVertexes[currentIdx];
-        current->findChildComponents(count, visited);
         
-        components.push_back(Component {
-            .start = current,
-            .size = count
-        });
+        Component *component = new Component();
+        Vertex *current = sourceVertexes[currentIdx];
+        current->findChildComponents(component->vertexes, visited);
+        
+        components.push_back(component);
     }
     
     sort(components.begin(), components.end(), highToLowComponents);

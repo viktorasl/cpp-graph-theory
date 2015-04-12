@@ -16,10 +16,11 @@ using namespace std;
 
 long * Component::visitAndReturn(long segmentSize, long& segments, long& degreeAverage)
 {
-    segments = ceil(size / segmentSize);
+    segments = ceil(vertexes.size() / segmentSize);
     long totaldegrees = 0;
     long stepsCount = 0;
     long *data = new long[segments]{0};
+    Vertex *start = vertexes[0];
     Vertex *current = start;
     do {
         stepsCount++;
