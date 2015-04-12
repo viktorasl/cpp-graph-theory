@@ -59,9 +59,18 @@ void Component::randomWalk(long segmentSize)
         if (current == start) {
             gotToHome = true;
         }
-    } while (!gotToHome || (uniqueVisitCount < (vertexes.size() - 1)));
+    } while (!gotToHome || (uniqueVisitCount < vertexes.size()));
     
-    Histogram::generate(Component::segmentise(visitsToHomeUnique, segmentSize), "random-walk-to-home-unique");
+    ofstream file("random-walk-info.txt");
+    file << "Reaching home:" << endl;
+    Histogram::generate(Component::segmentise(visitsToHome, segmentSize, file), "random-walk-to-home");
+    file << "Reaching home unique:" << endl;
+    Histogram::generate(Component::segmentise(visitsToHomeUnique, segmentSize, file), "random-walk-to-home-unique");
+    file << "Visiting all vertexes:" << endl;
+    Histogram::generate(Component::segmentise(visitsAllVertexes, segmentSize, file), "random-walk-all");
+    file << "Visiting all vertexes passing unique:" << endl;
+    Histogram::generate(Component::segmentise(visitsAllVertexesUnique, segmentSize, file), "random-walk-all-unique");
+    file.close();
     
     delete visitsAllVertexesUnique;
     delete visitsAllVertexes;
@@ -70,24 +79,29 @@ void Component::randomWalk(long segmentSize)
     delete visited;
 }
 
-vector<long>* Component::segmentise(vector<long> *degrees, long segmentSize)
+vector<long>* Component::segmentise(vector<long> *degrees, long segmentSize, ofstream &output)
 {
     vector<long> *segments = new vector<long>();
     long stepsCount = 0;
     long totalDegree = 0;
+    long segmentDegree = 0;
     
     for (vector<long>::iterator it = degrees->begin(); it != degrees->end(); ++it) {
         stepsCount++;
         totalDegree += (*it);
+        segmentDegree += (*it);
         if (stepsCount % segmentSize == 0) {
-            segments->push_back(totalDegree / segmentSize);
-            totalDegree = 0;
+            segments->push_back(segmentDegree / segmentSize);
+            segmentDegree = 0;
         }
     }
     
     if (stepsCount % segmentSize != 0) {
-        segments->push_back(totalDegree / segmentSize);
+        segments->push_back(segmentDegree / segmentSize);
     }
+    
+    output << "\tVertexes count: " << degrees->size() << endl
+           << "\tVertexes degrees average: " << (totalDegree / stepsCount) << endl;
     
     return segments;
 }

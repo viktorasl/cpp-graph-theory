@@ -11,12 +11,13 @@
 
 #include "Vertex.h"
 #include <vector>
+#include <fstream>
 
 typedef struct {
     std::vector<Vertex *>vertexes;
     
     void randomWalk(long segmentSize);
-    static std::vector<long>* segmentise(std::vector<long> *degrees, long segmentSize);
+    static std::vector<long>* segmentise(std::vector<long> *degrees, long segmentSize, std::ofstream &output);
 } Component;
 
 #endif /* defined(__Graphs__Component__) */
