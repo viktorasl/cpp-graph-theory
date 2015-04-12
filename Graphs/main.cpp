@@ -42,11 +42,7 @@ int main(int argc, const char * argv[])
         }
     }
     
-    long segments = 0;
-    long avg = 0;
-    long *s = components[0]->visitAndReturn(100, segments, avg);
-    Histogram::generate(segments, s, "visiting-to-home");
-    cout << "average degrees count is " << avg << endl;
+    components[0]->visitAndReturn(100);
     
     stringstream ss;
     ss << "nonhomogenic-beta1=" << beta1 << "beta2=" << beta2;

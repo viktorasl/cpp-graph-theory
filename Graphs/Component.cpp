@@ -9,14 +9,15 @@
 #include "Component.h"
 #include <iostream>
 #include <random>
+#include "Histogram.h"
 
 #define MIN(a,b) ((a) < (b) ? a : b)
 
 using namespace std;
 
-long * Component::visitAndReturn(long segmentSize, long& segments, long& degreeAverage)
+void Component::visitAndReturn(long segmentSize)
 {
-    segments = ceil(vertexes.size() / segmentSize);
+    long segments = ceil(vertexes.size() / segmentSize);
     long totaldegrees = 0;
     long stepsCount = 0;
     long *data = new long[segments]{0};
@@ -29,7 +30,8 @@ long * Component::visitAndReturn(long segmentSize, long& segments, long& degreeA
         long idx = arc4random() % current->possibleWays();
         current = current->connectionAt(idx);
     } while (current != start);
-    degreeAverage = totaldegrees / stepsCount;
+    long degreeAverage = totaldegrees / stepsCount;
     
-    return data;
+    Histogram::generate(segments, data, "visiting-to-home");
+    cout << "average degrees count is " << degreeAverage << endl;
 }

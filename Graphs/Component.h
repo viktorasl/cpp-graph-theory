@@ -9,13 +9,13 @@
 #ifndef __Graphs__Component__
 #define __Graphs__Component__
 
-#import "Vertex.h"
-#import <vector>
+#include "Vertex.h"
+#include <vector>
 
 typedef struct {
     std::vector<Vertex *>vertexes;
     
-    long * visitAndReturn(long segmentSize, long& segments, long& degreeAverage);
+    void visitAndReturn(long segmentSize);
 } Component;
 
 #endif /* defined(__Graphs__Component__) */
