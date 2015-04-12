@@ -17,24 +17,32 @@ using namespace std;
 
 void Component::visitAndReturn(long segmentSize)
 {
-    long segments = ceil(vertexes.size() / segmentSize);
     long totaldegrees = 0;
     long stepsCount = 0;
     vector<long> *data = new vector<long>();
-    for (long idx = 0; idx < segments; idx++) {
-        data->push_back(0);
-    }
     
     Vertex *start = vertexes[0];
     Vertex *current = start;
+    
+    long segmentDegree = 0;
     do {
         stepsCount++;
         totaldegrees += current->possibleWays();
+        segmentDegree += current->possibleWays();
         
-        (*data)[MIN((long)(current->possibleWays() / segmentSize), segments - 1)]++;
+        if (stepsCount % segmentSize == 0) {
+            data->push_back(segmentDegree / segmentSize);
+            segmentDegree = 0;
+        }
+        
         long idx = arc4random() % current->possibleWays();
         current = current->connectionAt(idx);
     } while (current != start);
+    
+    if (stepsCount % segmentSize != 0) {
+        data->push_back(segmentDegree / (stepsCount % segmentSize));
+    }
+    
     long degreeAverage = totaldegrees / stepsCount;
     
     Histogram::generate(data, "visiting-to-home");
