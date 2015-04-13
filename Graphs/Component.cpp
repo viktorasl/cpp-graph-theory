@@ -53,6 +53,9 @@ void Component::randomWalk(long segmentSize)
         }
         
         // Moving to the next vertex
+        if (current->possibleWays() == 0) {
+            break;
+        }
         long idx = arc4random() % current->possibleWays();
         current = current->connectionAt(idx);
         

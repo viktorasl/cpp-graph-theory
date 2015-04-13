@@ -20,7 +20,7 @@
 
 bool highToLowComponents(Component *i, Component *j)
 {
-    return i->vertexes.size() < j->vertexes.size();
+    return i->vertexes.size() > j->vertexes.size();
 }
 
 using namespace std;
