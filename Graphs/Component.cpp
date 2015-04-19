@@ -15,6 +15,17 @@
 
 using namespace std;
 
+Component::Component(std::vector<Vertex *>vertexes, long maxSize)
+{
+    this->vertexes = vertexes;
+    this->maxSize = maxSize;
+}
+
+vector<Vertex *> Component::getVertexes()
+{
+    return vertexes;
+}
+
 void Component::randomWalk(long segmentSize)
 {
     bool *visited = new bool[vertexes.size()]{false};
@@ -66,13 +77,13 @@ void Component::randomWalk(long segmentSize)
     
     ofstream file("random-walk-info.txt");
     file << "Reaching home:" << endl;
-    Histogram::generate(Component::segmentise(visitsToHome, segmentSize, file), "random-walk-to-home");
+    Histogram::generate(Component::segmentiseByStepCount(visitsToHome, segmentSize, file), "random-walk-to-home");
     file << "Reaching home unique:" << endl;
-    Histogram::generate(Component::segmentise(visitsToHomeUnique, segmentSize, file), "random-walk-to-home-unique");
+    Histogram::generate(Component::segmentiseByStepCount(visitsToHomeUnique, segmentSize, file), "random-walk-to-home-unique");
     file << "Visiting all vertexes:" << endl;
-    Histogram::generate(Component::segmentise(visitsAllVertexes, segmentSize, file), "random-walk-all");
+    Histogram::generate(Component::segmentiseByStepCount(visitsAllVertexes, segmentSize, file), "random-walk-all");
     file << "Visiting all vertexes passing unique:" << endl;
-    Histogram::generate(Component::segmentise(visitsAllVertexesUnique, segmentSize, file), "random-walk-all-unique");
+    Histogram::generate(Component::segmentiseByStepCount(visitsAllVertexesUnique, segmentSize, file), "random-walk-all-unique");
     file.close();
     
     delete visitsAllVertexesUnique;
@@ -82,7 +93,56 @@ void Component::randomWalk(long segmentSize)
     delete visited;
 }
 
-vector<long>* Component::segmentise(vector<long> *degrees, long segmentSize, ofstream &output)
+void Component::averageUniqueWalkToHome(long segmentSize)
+{
+    bool *visited = new bool[vertexes.size()]{false};
+    long totalSteps = 0;
+    
+    vector<long> *visitsToHomeUnique = new vector<long>();
+    
+    Vertex *start = vertexes[0];
+    Vertex *current = start;
+    
+    do {
+        totalSteps++;
+        long vertexDegree = current->possibleWays();
+        
+        // Recording unique visits
+        vector<Vertex *>::iterator it = find(vertexes.begin(), vertexes.end(), current);
+        long uIdx = distance(vertexes.begin(), it);
+        if (visited[uIdx] == false) {
+            visited[uIdx] = true;
+            visitsToHomeUnique->push_back(vertexDegree);
+        }
+        
+        long idx = arc4random() % current->possibleWays();
+        current = current->connectionAt(idx);
+    } while (current != start);
+    
+    ofstream file("average-to-home-info.txt");
+    file << "Reaching home:" << endl;
+    Histogram::generate(Component::segmentiseByDegree(visitsToHomeUnique, maxSize, 100, file), "first-random-walk-to-home");
+    file << "Total steps count: " << totalSteps;
+    file.close();
+    
+    delete visitsToHomeUnique;
+    delete visited;
+}
+
+vector<long>* Component::segmentiseByDegree(std::vector<long> *degrees, long maxDegree, long segmentsCount, ofstream &output)
+{
+    vector<long> *data = new vector<long>();
+    for (long idx = 0; idx < segmentsCount; idx++) {
+        data->push_back(0);
+    }
+    long segmentSize = (long)(maxDegree / segmentsCount);
+    for (std::vector<long>::iterator dgr = degrees->begin(); dgr != degrees->end(); ++dgr) {
+        (*data)[MIN((long)(*dgr / segmentSize), segmentsCount - 1)]++;
+    }
+    return data;
+}
+
+vector<long>* Component::segmentiseByStepCount(vector<long> *degrees, long stepsSegment, ofstream &output)
 {
     vector<long> *segments = new vector<long>();
     long stepsCount = 0;
@@ -93,14 +153,14 @@ vector<long>* Component::segmentise(vector<long> *degrees, long segmentSize, ofs
         stepsCount++;
         totalDegree += (*it);
         segmentDegree += (*it);
-        if (stepsCount % segmentSize == 0) {
-            segments->push_back(segmentDegree / segmentSize);
+        if (stepsCount % stepsSegment == 0) {
+            segments->push_back(segmentDegree / stepsSegment);
             segmentDegree = 0;
         }
     }
     
-    if (stepsCount % segmentSize != 0) {
-        segments->push_back(segmentDegree / segmentSize);
+    if (stepsCount % stepsSegment != 0) {
+        segments->push_back(segmentDegree / stepsSegment);
     }
     
     output << "\tVertexes count: " << degrees->size() << endl

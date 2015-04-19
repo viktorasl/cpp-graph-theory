@@ -20,7 +20,7 @@
 
 bool highToLowComponents(Component *i, Component *j)
 {
-    return i->vertexes.size() > j->vertexes.size();
+    return i->getVertexes().size() > j->getVertexes().size();
 }
 
 using namespace std;
@@ -142,11 +142,12 @@ vector<Component *> Graph::findingComponents()
             break;
         }
         
-        Component *component = new Component();
-        Vertex *current = sourceVertexes[currentIdx];
-        current->findChildComponents(component->vertexes, visited);
         
-        components.push_back(component);
+        Vertex *current = sourceVertexes[currentIdx];
+        vector<Vertex *> vertexes;
+        current->findChildComponents(vertexes, visited);
+        
+        components.push_back(new Component(vertexes, sourceVertexes.size()));
     }
     
     sort(components.begin(), components.end(), highToLowComponents);

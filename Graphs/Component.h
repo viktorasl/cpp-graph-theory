@@ -13,11 +13,18 @@
 #include <vector>
 #include <fstream>
 
-typedef struct {
+class Component {
+private:
     std::vector<Vertex *>vertexes;
+    long maxSize;
+public:
+    Component(std::vector<Vertex *>vertexes, long maxSize);
     
     void randomWalk(long segmentSize);
-    static std::vector<long>* segmentise(std::vector<long> *degrees, long segmentSize, std::ofstream &output);
-} Component;
+    void averageUniqueWalkToHome(long segmentSize);
+    std::vector<Vertex *> getVertexes();
+    static std::vector<long>* segmentiseByDegree(std::vector<long> *degrees, long maxDegree, long segmentsCount, std::ofstream &output);
+    static std::vector<long>* segmentiseByStepCount(std::vector<long> *degrees, long stepsSegment, std::ofstream &output);
+};
 
 #endif /* defined(__Graphs__Component__) */
