@@ -19,11 +19,13 @@ private:
     long maxSize;
 public:
     Component(std::vector<Vertex *>vertexes, long maxSize);
-    
+private:
+    std::vector<long> * uniqueWalkToHome(long &totalSteps);
+public:
     void randomWalk(long segmentSize);
     void averageUniqueWalkToHome(long segmentSize);
     std::vector<Vertex *> getVertexes();
-    static std::vector<long>* segmentiseByDegree(std::vector<long> *degrees, long maxDegree, long segmentsCount, std::ofstream &output);
+    static std::vector<long>* segmentiseByDegree(std::vector<long> *degrees, long maxDegree, long segmentsCount);
     static std::vector<long>* segmentiseByStepCount(std::vector<long> *degrees, long stepsSegment, std::ofstream &output);
 };
 

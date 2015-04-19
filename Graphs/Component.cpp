@@ -15,6 +15,8 @@
 
 using namespace std;
 
+typedef vector<long> Degrees;
+
 Component::Component(std::vector<Vertex *>vertexes, long maxSize)
 {
     this->vertexes = vertexes;
@@ -93,10 +95,9 @@ void Component::randomWalk(long segmentSize)
     delete visited;
 }
 
-void Component::averageUniqueWalkToHome(long segmentSize)
+vector<long> * Component::uniqueWalkToHome(long &totalSteps)
 {
     bool *visited = new bool[vertexes.size()]{false};
-    long totalSteps = 0;
     
     vector<long> *visitsToHomeUnique = new vector<long>();
     
@@ -119,17 +120,32 @@ void Component::averageUniqueWalkToHome(long segmentSize)
         current = current->connectionAt(idx);
     } while (current != start);
     
-    ofstream file("average-to-home-info.txt");
-    file << "Reaching home:" << endl;
-    Histogram::generate(Component::segmentiseByDegree(visitsToHomeUnique, maxSize, 100, file), "first-random-walk-to-home");
-    file << "Total steps count: " << totalSteps;
-    file.close();
-    
-    delete visitsToHomeUnique;
     delete visited;
+    
+    return visitsToHomeUnique;
 }
 
-vector<long>* Component::segmentiseByDegree(std::vector<long> *degrees, long maxDegree, long segmentsCount, ofstream &output)
+void Component::averageUniqueWalkToHome(long segmentSize)
+{
+    vector<Degrees *> *segmentedDegrees = new vector<Degrees *>();
+    for (int i = 0; i < 100; i++) {
+        long totalSteps = 0;
+        Degrees *visitsToHomeUnique = uniqueWalkToHome(totalSteps);
+        segmentedDegrees->push_back(visitsToHomeUnique);
+        if (i == 0) {
+            ofstream file("average-to-home-info.txt");
+            file << "Reaching home:" << endl << "\tTotal steps count: " << totalSteps;
+            file.close();
+        }
+        
+        delete visitsToHomeUnique;
+    }
+    Histogram::generate(Component::segmentiseByDegree((*segmentedDegrees)[0], maxSize, 100), "first-random-walk-to-home");
+    
+    delete segmentedDegrees;
+}
+
+Degrees* Component::segmentiseByDegree(Degrees *degrees, long maxDegree, long segmentsCount)
 {
     vector<long> *data = new vector<long>();
     for (long idx = 0; idx < segmentsCount; idx++) {
