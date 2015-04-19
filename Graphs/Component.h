@@ -23,7 +23,7 @@ private:
     std::vector<long> * uniqueWalkToHome(long &totalSteps);
 public:
     void randomWalk(long segmentSize);
-    void averageUniqueWalkToHome(long segmentSize);
+    void averageUniqueWalkToHome(long segmentSize, long repeatCount);
     std::vector<Vertex *> getVertexes();
     static std::vector<long>* segmentiseByDegree(std::vector<long> *degrees, long maxDegree, long segmentsCount);
     static std::vector<long>* segmentiseByStepCount(std::vector<long> *degrees, long stepsSegment, std::ofstream &output);

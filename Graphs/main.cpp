@@ -42,7 +42,7 @@ int main(int argc, const char * argv[])
         }
     }
     
-    components[0]->averageUniqueWalkToHome(100);
+    components[0]->averageUniqueWalkToHome(100, 100);
     
     stringstream ss;
     ss << "linear-beta=" << beta1;

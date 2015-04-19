@@ -125,22 +125,43 @@ vector<long> * Component::uniqueWalkToHome(long &totalSteps)
     return visitsToHomeUnique;
 }
 
-void Component::averageUniqueWalkToHome(long segmentSize)
+void Component::averageUniqueWalkToHome(long segmentSize, long repeatCount)
 {
     vector<Degrees *> *segmentedDegrees = new vector<Degrees *>();
-    for (int i = 0; i < 100; i++) {
+    for (long i = 0; i < repeatCount; i++) {
         long totalSteps = 0;
         Degrees *visitsToHomeUnique = uniqueWalkToHome(totalSteps);
-        segmentedDegrees->push_back(visitsToHomeUnique);
+        Degrees *segmentised = Component::segmentiseByDegree(visitsToHomeUnique, maxSize, 100);
+        
+        segmentedDegrees->push_back(segmentised);
         if (i == 0) {
+            Histogram::generate(segmentised, "first-random-walk-to-home");
             ofstream file("average-to-home-info.txt");
             file << "Reaching home:" << endl << "\tTotal steps count: " << totalSteps;
             file.close();
         }
-        
-        delete visitsToHomeUnique;
     }
-    Histogram::generate(Component::segmentiseByDegree((*segmentedDegrees)[0], maxSize, 100), "first-random-walk-to-home");
+    
+    Degrees *average = new Degrees();
+    long idx = 0;
+    bool calculatedAverage = false;
+    while (!calculatedAverage) {
+        long degreesSum = 0;
+        for (vector<Degrees *>::iterator dgr = segmentedDegrees->begin(); dgr != segmentedDegrees->end(); ++dgr) {
+            if (idx >= (*dgr)->size()) {
+                calculatedAverage = true;
+                break;
+            }
+            degreesSum += (**dgr)[idx];
+        }
+        if (calculatedAverage) {
+            break;
+        }
+        average->push_back(degreesSum / segmentedDegrees->size());
+        idx++;
+    }
+    
+    Histogram::generate(average, "average-random-walk-to-home");
     
     delete segmentedDegrees;
 }
