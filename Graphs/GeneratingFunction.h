@@ -19,16 +19,14 @@ class GeneratingFunction
 {
 private:
     double beta;
-    long const precisionFactor;
     double multiplication;
 public:
     /**
      * @param beta      positive exponential constant
      * @param m         destinations count
      * @param n         sources count
-     * @param precision generated random number from 0 to 1 precision
      */
-    GeneratingFunction(double beta, long m, long n, int precision);
+    GeneratingFunction(double beta, long m, long n);
 private:
     double functionValueWithU(double u);
     long generateWithU(double u);

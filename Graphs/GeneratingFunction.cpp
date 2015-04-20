@@ -13,8 +13,7 @@
 
 using namespace std;
 
-GeneratingFunction::GeneratingFunction(double beta, long m, long n, int precision)
-    : precisionFactor(pow(10, precision))
+GeneratingFunction::GeneratingFunction(double beta, long m, long n)
 {
     this->beta = beta;
     this->multiplication = sqrt((double)m / (double)n);
@@ -22,7 +21,7 @@ GeneratingFunction::GeneratingFunction(double beta, long m, long n, int precisio
 
 double GeneratingFunction::randomizeU()
 {
-    return (long)arc4random() % precisionFactor / (double)precisionFactor; // getting u
+    return static_cast<float>(rand()) / static_cast<float>(RAND_MAX);
 }
 
 double GeneratingFunction::functionValueWithU(double u)
