@@ -22,8 +22,8 @@ int main(int argc, const char * argv[])
     long m = 20000;
     double beta1 = 1;
     double beta2 = 1.5;
-    GeneratingFunction *gfn = new GeneratingFunction(beta1, m, n, 4);
-    GeneratingFunction *gfm = new GeneratingFunction(beta2, m, n, 4);
+    GeneratingFunction *gfn = new GeneratingFunction(beta1, m, n);
+    GeneratingFunction *gfm = new GeneratingFunction(beta2, m, n);
     
     chrono::high_resolution_clock::time_point startT = chrono::high_resolution_clock::now();
 //    InhomogenicGraph graph(n, m, gfn, gfm);
