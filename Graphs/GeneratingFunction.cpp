@@ -11,6 +11,8 @@
 #include <random>
 #include <iostream>
 
+#define ARC4RANDOM_MAX      0x100000000
+
 using namespace std;
 
 GeneratingFunction::GeneratingFunction(double beta, long m, long n)
@@ -21,7 +23,7 @@ GeneratingFunction::GeneratingFunction(double beta, long m, long n)
 
 double GeneratingFunction::randomizeU()
 {
-    return static_cast<float>(rand()) / static_cast<float>(RAND_MAX);
+    return (double)arc4random() / ARC4RANDOM_MAX;
 }
 
 double GeneratingFunction::functionValueWithU(double u)

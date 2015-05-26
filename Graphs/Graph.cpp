@@ -156,20 +156,20 @@ vector<Component *> Graph::findingComponents()
     return components;
 }
 
-vector<long>* Graph::getSourceDegrees(int segments)
+vector<long>* Graph::getSourceDegrees(int segmentsCount)
 {
     vector<long> *data = new vector<long>();
-    for (long idx = 0; idx < segments; idx++) {
+    for (long idx = 0; idx < segmentsCount; idx++) {
         data->push_back(0);
     }
-    long segmentSize = (long)(sourceVertexes.size() / segments);
+    long segmentSize = (long)(sourceVertexes.size() / segmentsCount);
     
     for (std::vector<Vertex *>::iterator src = sourceVertexes.begin(); src != sourceVertexes.end(); ++src) {
         long degree = 0;
         for (long i = 0; i < (*src)->possibleWays(); i++) {
             degree++;
         }
-        (*data)[MIN((long)(degree / segmentSize), segments - 1)]++;
+        (*data)[MIN((long)(degree / segmentSize), segmentsCount - 1)]++;
     }
     return data;
 }
