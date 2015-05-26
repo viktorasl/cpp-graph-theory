@@ -34,10 +34,10 @@ void Component::randomWalk(long segmentSize)
     long uniqueVisitCount = 0;
     bool gotToHome = false;
     
-    vector<long> *visitsToHome = new vector<long>();
-    vector<long> *visitsToHomeUnique = new vector<long>();
-    vector<long> *visitsAllVertexes = new vector<long>();
-    vector<long> *visitsAllVertexesUnique = new vector<long>();
+    Degrees *visitsToHome = new Degrees();
+    Degrees *visitsToHomeUnique = new Degrees();
+    Degrees *visitsAllVertexes = new Degrees();
+    Degrees *visitsAllVertexesUnique = new Degrees();
     
     Vertex *start = vertexes[0];
     Vertex *current = start;
@@ -99,7 +99,7 @@ vector<long> * Component::uniqueWalkToHome(long &totalSteps)
 {
     bool *visited = new bool[vertexes.size()]{false};
     
-    vector<long> *visitsToHomeUnique = new vector<long>();
+    vector<long> *visitedDegrees = new vector<long>();
     
     Vertex *start = vertexes[0];
     Vertex *current = start;
@@ -113,7 +113,7 @@ vector<long> * Component::uniqueWalkToHome(long &totalSteps)
         long uIdx = distance(vertexes.begin(), it);
         if (visited[uIdx] == false) {
             visited[uIdx] = true;
-            visitsToHomeUnique->push_back(vertexDegree);
+            visitedDegrees->push_back(vertexDegree);
         }
         
         long idx = arc4random() % current->possibleWays();
@@ -122,7 +122,7 @@ vector<long> * Component::uniqueWalkToHome(long &totalSteps)
     
     delete visited;
     
-    return visitsToHomeUnique;
+    return visitedDegrees;
 }
 
 void Component::averageUniqueWalkToHome(long segmentSize, long repeatCount)
@@ -131,7 +131,7 @@ void Component::averageUniqueWalkToHome(long segmentSize, long repeatCount)
     for (long i = 0; i < repeatCount; i++) {
         long totalSteps = 0;
         Degrees *visitsToHomeUnique = uniqueWalkToHome(totalSteps);
-        Degrees *segmentised = Component::segmentiseByDegree(visitsToHomeUnique, maxSize, 100);
+        Degrees *segmentised = Component::segmentiseByDegree(visitsToHomeUnique, maxSize, 20);
         
         segmentedDegrees->push_back(segmentised);
         if (i == 0) {
