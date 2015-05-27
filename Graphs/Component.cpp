@@ -9,7 +9,9 @@
 #include "Component.h"
 #include <iostream>
 #include <random>
+#include <sstream>
 #include "Histogram.h"
+#include "OutputInfo.h"
 
 #define MIN(a,b) ((a) < (b) ? a : b)
 
@@ -75,7 +77,9 @@ void Component::randomWalk(long segmentSize)
         }
     } while (!gotToHome || (uniqueVisitCount < vertexes.size()));
     
-    ofstream file("random-walk-info.txt");
+    stringstream fileName;
+    fileName << RESULTS_DIR << "/random-walk-info.txt";
+    ofstream file(fileName.str());
     file << "Reaching home:" << endl;
     Histogram::generate(Component::segmentiseByStepCount(visitsToHome, segmentSize, file), "random-walk-to-home");
     file << "Reaching home unique:" << endl;
@@ -134,7 +138,9 @@ void Component::averageUniqueWalkToHome(long segmentSize, long repeatCount)
         segmentedDegrees->push_back(segmentised);
         if (i == 0) {
             Histogram::generate(segmentised, "first-random-walk-to-home");
-            ofstream file("average-to-home-info.txt");
+            stringstream fileName;
+            fileName << RESULTS_DIR << "/average-to-home-info.txt";
+            ofstream file(fileName.str());
             file << "Reaching home:" << endl << "\tTotal steps count: " << totalSteps;
             file.close();
         }

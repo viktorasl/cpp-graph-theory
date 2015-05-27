@@ -28,5 +28,5 @@
 *.out
 *.app
 
-Graphs/Histograms/*.png
-Graphs/Histograms/*.txt
+Graphs/Histograms/res/*.png
+Graphs/Histograms/res/*.txt
