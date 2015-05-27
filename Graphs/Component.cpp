@@ -171,7 +171,7 @@ Degrees* Component::segmentiseByDegree(Degrees *degrees, long maxDegree, long se
         data->push_back(0);
     }
     long segmentSize = (long)(maxDegree / segmentsCount);
-    for (std::Degrees::iterator dgr = degrees->begin(); dgr != degrees->end(); ++dgr) {
+    for (Degrees::iterator dgr = degrees->begin(); dgr != degrees->end(); ++dgr) {
         (*data)[MIN((long)(*dgr / segmentSize), segmentsCount - 1)]++;
     }
     return data;

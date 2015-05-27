@@ -18,36 +18,23 @@ using namespace std;
 
 int main(int argc, const char * argv[])
 {
-    long n = 10000;
-    long m = 20000;
-    double beta1 = 1;
-    double beta2 = 1.5;
+    long n = 1000;
+    long m = 2000;
+    int histogramSegments = 20;
+    long relativeColumn = 300;
+    double beta1 = 1.5;
+    double beta2 = 3;
     GeneratingFunction *gfn = new GeneratingFunction(beta1, m, n);
     GeneratingFunction *gfm = new GeneratingFunction(beta2, m, n);
     
-    chrono::high_resolution_clock::time_point startT = chrono::high_resolution_clock::now();
-//    InhomogenicGraph graph(n, m, gfn, gfm);
-    Graph graph(n, m, gfn);
-    chrono::high_resolution_clock::time_point endT = chrono::high_resolution_clock::now();
-    
-    auto duration = chrono::duration_cast<chrono::milliseconds>(endT - startT).count();
-    cout << duration << "ms" << endl;
-    
-    vector<Component *> components = graph.findingComponents();
-    int idx = 1;
-    for (vector<Component *>::iterator it = components.begin(); it != components.end(); ++it) {
-        cout << "C" << idx++ << " size " << (*it)->getVertexes().size() << endl;
-        if (idx == 2) {
-            break;
-        }
-    }
-    
-    components[0]->averageUniqueWalkToHome(100, 100);
+    InhomogenicGraph graph(n, m, gfn, gfm);
     
     stringstream ss;
-    ss << "linear-beta=" << beta1;
-//    ss << "nonhomogenic-beta1=" << beta1 << "beta2=" << beta2;
-    Histogram::generate(graph.getSourceDegrees(100), ss.str());
+    ss << "Inhomogenic_b1=" << beta1 << "_b2=" << beta2;
+    Degrees *degrees = graph.getSourceDegrees(histogramSegments);
+    Histogram::generate(degrees, ss.str());
+    ss << "_rlt";
+    Histogram::generate(degrees, relativeColumn, ss.str());
     
     return 0;
 }
