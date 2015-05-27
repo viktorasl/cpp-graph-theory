@@ -10,15 +10,14 @@
 #include <sstream>
 #include <iostream>
 #include <fstream>
-#include "OutputInfo.h"
+#include "OutputHelper.h"
 
 using namespace std;
 
 void Histogram::generate(vector<long> *segments, long relativeColumn, string fileName)
 {
-    stringstream outputFile;
-    outputFile << RESULTS_DIR "/" << fileName << ".txt";
-    ofstream file(outputFile.str());
+    string outputFile = resultsPath(fileName, "txt");
+    ofstream file(outputFile);
     
     if (relativeColumn > 0) {
         file << relativeColumn << endl;
@@ -30,7 +29,7 @@ void Histogram::generate(vector<long> *segments, long relativeColumn, string fil
     file.close();
     
     stringstream rubyExecutable;
-    rubyExecutable << "ruby histogram.rb draw " << outputFile.str() << " " << RESULTS_DIR << "/" << fileName;
+    rubyExecutable << "ruby histogram.rb draw " << outputFile << " " << resultsDir << "/" << fileName;
     const char *exec = rubyExecutable.str().c_str();
     system(exec);
 }

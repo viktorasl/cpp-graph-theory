@@ -14,7 +14,7 @@
 #include "InhomogenicGraph.h"
 #include "Histogram.h"
 #include <dirent.h>
-#include "OutputInfo.h"
+#include "OutputHelper.h"
 
 using namespace std;
 
@@ -26,12 +26,12 @@ void removeResults()
     
     char filepath[256];
     
-    theFolder = opendir(RESULTS_DIR);
+    theFolder = opendir(resultsDir.c_str());
     
     while ((next_file = readdir(theFolder)) != NULL)
     {
         // build the full path for each file in the folder
-        sprintf(filepath, "%s/%s", RESULTS_DIR, next_file->d_name);
+        sprintf(filepath, "%s/%s", resultsDir.c_str(), next_file->d_name);
         remove(filepath);
     }
 }
