@@ -15,8 +15,6 @@
 
 using namespace std;
 
-typedef vector<long> Degrees;
-
 Component::Component(std::vector<Vertex *>vertexes, long maxSize)
 {
     this->vertexes = vertexes;
@@ -95,11 +93,11 @@ void Component::randomWalk(long segmentSize)
     delete visited;
 }
 
-vector<long> * Component::uniqueWalkToHome(long &totalSteps)
+Degrees * Component::uniqueWalkToHome(long &totalSteps)
 {
     bool *visited = new bool[vertexes.size()]{false};
     
-    vector<long> *visitedDegrees = new vector<long>();
+    Degrees *visitedDegrees = new Degrees();
     
     Vertex *start = vertexes[0];
     Vertex *current = start;
@@ -168,25 +166,25 @@ void Component::averageUniqueWalkToHome(long segmentSize, long repeatCount)
 
 Degrees* Component::segmentiseByDegree(Degrees *degrees, long maxDegree, long segmentsCount)
 {
-    vector<long> *data = new vector<long>();
+    Degrees *data = new Degrees();
     for (long idx = 0; idx < segmentsCount; idx++) {
         data->push_back(0);
     }
     long segmentSize = (long)(maxDegree / segmentsCount);
-    for (std::vector<long>::iterator dgr = degrees->begin(); dgr != degrees->end(); ++dgr) {
+    for (std::Degrees::iterator dgr = degrees->begin(); dgr != degrees->end(); ++dgr) {
         (*data)[MIN((long)(*dgr / segmentSize), segmentsCount - 1)]++;
     }
     return data;
 }
 
-vector<long>* Component::segmentiseByStepCount(vector<long> *degrees, long stepsSegment, ofstream &output)
+Degrees* Component::segmentiseByStepCount(Degrees *degrees, long stepsSegment, ofstream &output)
 {
-    vector<long> *segments = new vector<long>();
+    Degrees *segments = new Degrees();
     long stepsCount = 0;
     long totalDegree = 0;
     long segmentDegree = 0;
     
-    for (vector<long>::iterator it = degrees->begin(); it != degrees->end(); ++it) {
+    for (Degrees::iterator it = degrees->begin(); it != degrees->end(); ++it) {
         stepsCount++;
         totalDegree += (*it);
         segmentDegree += (*it);

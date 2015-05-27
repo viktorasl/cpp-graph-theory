@@ -156,9 +156,9 @@ vector<Component *> Graph::findingComponents()
     return components;
 }
 
-vector<long>* Graph::getSourceDegrees(int segmentsCount)
+Degrees* Graph::getSourceDegrees(int segmentsCount)
 {
-    vector<long> *data = new vector<long>();
+    Degrees *data = new Degrees();
     for (long idx = 0; idx < segmentsCount; idx++) {
         data->push_back(0);
     }

@@ -12,6 +12,8 @@
 #include <stdio.h>
 #include <vector>
 
+typedef std::vector<long> Degrees;
+
 class Vertex {
 private:
     long key;
