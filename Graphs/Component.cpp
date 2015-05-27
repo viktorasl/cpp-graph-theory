@@ -205,3 +205,26 @@ Degrees* Component::segmentiseByStepCount(Degrees *degrees, long stepsSegment, o
     
     return segments;
 }
+
+Degrees* Component::randomWalkFromVertex(Vertex *startVertex)
+{
+    Degrees *degrees = new Degrees();
+    if (!startVertex) {
+        return degrees;
+    }
+    bool *visited = new bool[vertexes.size()]{false};
+    Vertex *current = startVertex;
+    do {
+        long degree = current->possibleWays();
+        if (degree > 0) {
+            long nextIdx = arc4random() % current->possibleWays();
+            current = current->connectionAt(nextIdx);
+            
+            if (! visited[current->getKey()]) {
+                degrees->push_back(degree);
+                visited[current->getKey()] = true;
+            }
+        }
+    } while (current != startVertex);
+    return degrees;
+}

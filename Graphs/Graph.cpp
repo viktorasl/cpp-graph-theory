@@ -173,3 +173,18 @@ Degrees* Graph::getSourceDegrees(int segmentsCount)
     }
     return data;
 }
+
+Vertex* Graph::vertexHavingDegree(long degreeMin, long degreeMax)
+{
+    long perfection = (degreeMax + degreeMin) / 2;
+    long precision = LONG_MAX;
+    Vertex *candidate = NULL;
+    for (vector<Vertex *>::iterator src = sourceVertexes.begin(); src != sourceVertexes.end(); ++src) {
+        long degree = (*src)->possibleWays();
+        if (degree >= degreeMin && degree <= degreeMax && abs(perfection - degree) < precision) {
+            precision = abs(perfection - degree);
+            candidate = *src;
+        }
+    }
+    return candidate;
+}

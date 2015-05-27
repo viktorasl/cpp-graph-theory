@@ -15,6 +15,7 @@
 #include "Histogram.h"
 #include <dirent.h>
 #include "OutputHelper.h"
+#include <sys/stat.h>
 
 using namespace std;
 
@@ -67,7 +68,37 @@ int main(int argc, const char * argv[])
         }
     }
     
-    components[0]->averageUniqueWalkToHome(100, 100);
+    struct stat st = {0};
+    
+    int folders[] = {10, 50, 100, 200, 500};
+    Vertex *vertexes[] = {
+        graph.vertexHavingDegree(0, 20),
+        graph.vertexHavingDegree(35, 65),
+        graph.vertexHavingDegree(75, 125),
+        graph.vertexHavingDegree(150, 250),
+        graph.vertexHavingDegree(400, 600)
+    };
+    
+    Component *component = components[0];
+    
+    for (int idx = 0; idx < 5; idx++) {
+        stringstream folderName;
+        folderName << "~" << folders[idx];
+        if (stat(resultsPath(folderName.str()).c_str(), &st) == -1) {
+            mkdir(resultsPath(folderName.str()).c_str(), 0700);
+        }
+        
+        for (int iteration = 0; iteration < 10; iteration++) {
+            stringstream filename;
+            filename << folderName.str();
+            Degrees *randomWalkDegrees = component->randomWalkFromVertex(vertexes[idx]);
+            Degrees *randomWalkSegments = Component::segmentiseByDegree(randomWalkDegrees, n, histogramSegments);
+            filename << "/" << iteration;
+            Histogram::generate(randomWalkSegments, filename.str());
+            filename << "_rlt";
+            Histogram::generate(randomWalkSegments, relativeColumn, filename.str());
+        }
+    }
     
     return 0;
 }

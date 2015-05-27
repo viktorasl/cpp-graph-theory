@@ -27,6 +27,7 @@ public:
     std::vector<Vertex *> getVertexes();
     static std::vector<long>* segmentiseByDegree(std::vector<long> *degrees, long maxDegree, long segmentsCount);
     static std::vector<long>* segmentiseByStepCount(std::vector<long> *degrees, long stepsSegment, std::ofstream &output);
+    Degrees* randomWalkFromVertex(Vertex *startVertex);
 };
 
 #endif /* defined(__Graphs__Component__) */

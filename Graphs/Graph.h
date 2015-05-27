@@ -44,6 +44,7 @@ public:
     std::vector<Component *> findingComponents();
     void destinationsPickingHistogram(std::string oFileName);
     std::vector<long>* getSourceDegrees(int segments);
+    Vertex* vertexHavingDegree(long degreeMin, long degreeMax);
     
 #ifdef __UNIT_TEST__
     friend class TestGraph;
