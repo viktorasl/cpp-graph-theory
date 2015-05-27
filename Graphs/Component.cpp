@@ -226,5 +226,7 @@ Degrees* Component::randomWalkFromVertex(Vertex *startVertex)
             }
         }
     } while (current != startVertex);
+    
+    delete visited;
     return degrees;
 }

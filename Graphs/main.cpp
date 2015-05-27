@@ -97,6 +97,9 @@ int main(int argc, const char * argv[])
             Histogram::generate(randomWalkSegments, filename.str());
             filename << "_rlt";
             Histogram::generate(randomWalkSegments, relativeColumn, filename.str());
+            
+            delete randomWalkDegrees;
+            delete randomWalkSegments;
         }
     }
     
