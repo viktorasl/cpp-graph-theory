@@ -16,6 +16,7 @@
 #include <dirent.h>
 #include "OutputHelper.h"
 #include <sys/stat.h>
+#include <map>
 
 using namespace std;
 
@@ -68,30 +69,29 @@ int main(int argc, const char * argv[])
         }
     }
     
-    struct stat st = {0};
-    
-    int folders[] = {10, 50, 100, 200, 500};
-    Vertex *vertexes[] = {
-        graph.vertexHavingDegree(0, 20),
-        graph.vertexHavingDegree(35, 65),
-        graph.vertexHavingDegree(75, 125),
-        graph.vertexHavingDegree(150, 250),
-        graph.vertexHavingDegree(400, 600)
-    };
-    
     Component *component = components[0];
     
-    for (int idx = 0; idx < 5; idx++) {
+    map<int, Vertex*> data;
+    data[10] = graph.vertexHavingDegree(0, 20);
+    data[50] = graph.vertexHavingDegree(35, 65);
+    data[100] = graph.vertexHavingDegree(75, 125);
+    data[200] = graph.vertexHavingDegree(150, 250);
+    data[500] = graph.vertexHavingDegree(400, 600);
+    
+    for (map<int, Vertex*>::iterator it = data.begin(); it != data.end(); ++it) {
+        // Making directory
         stringstream folderName;
-        folderName << "~" << folders[idx];
+        folderName << "~" << it->first;
+        struct stat st = {0};
         if (stat(resultsPath(folderName.str()).c_str(), &st) == -1) {
             mkdir(resultsPath(folderName.str()).c_str(), 0700);
         }
         
+        // Putting data to directory
         for (int iteration = 0; iteration < 10; iteration++) {
             stringstream filename;
             filename << folderName.str();
-            Degrees *randomWalkDegrees = component->randomWalkFromVertex(vertexes[idx]);
+            Degrees *randomWalkDegrees = component->randomWalkFromVertex(it->second);
             Degrees *randomWalkSegments = Component::segmentiseByDegree(randomWalkDegrees, n, histogramSegments);
             filename << "/" << iteration;
             Histogram::generate(randomWalkSegments, filename.str());
